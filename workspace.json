@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "mt64": "packages/mt64",
+    "yscrypt": "packages/yscrypt"
+  }
 }

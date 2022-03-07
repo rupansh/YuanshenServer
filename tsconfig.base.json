@@ -8,13 +8,19 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2020",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2020"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strict": true,
+    "pretty": true,
     "baseUrl": ".",
-    "paths": {}
+    "types": ["node"],
+    "paths": {
+      "@ysparadox/mt64": ["packages/mt64/src/index.ts"],
+      "@ysparadox/yscrypt": ["packages/yscrypt/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

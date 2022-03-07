@@ -1,6 +1,6 @@
 {
   "extends": "@nrwl/workspace/presets/core.json",
-  "npmScope": "yuanshen-server",
+  "npmScope": "ysparadox",
   "affected": {
     "defaultBase": "master"
   },
@@ -9,14 +9,15 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
           "lint",
           "test",
           "e2e"
-        ]
+        ],
+        "accessToken": "NTVhZGY5M2YtNzY3ZS00YzMwLTk1YWItYTNiNzk3Zjk2YWFlfHJlYWQtd3JpdGU="
       }
     }
   }
