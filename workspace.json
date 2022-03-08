@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "mt64": "packages/mt64",
-    "yscrypt": "packages/yscrypt"
+    "yscrypt": "packages/yscrypt",
+    "ysproto": "packages/ysproto"
   }
 }

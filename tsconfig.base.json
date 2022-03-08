@@ -8,6 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "resolveJsonModule": true,
     "target": "es2020",
     "module": "esnext",
     "lib": ["es2020"],
@@ -19,7 +20,8 @@
     "types": ["node"],
     "paths": {
       "@ysparadox/mt64": ["packages/mt64/src/index.ts"],
-      "@ysparadox/yscrypt": ["packages/yscrypt/src/index.ts"]
+      "@ysparadox/yscrypt": ["packages/yscrypt/src/index.ts"],
+      "@ysparadox/ysproto": ["packages/ysproto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

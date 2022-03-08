@@ -2,9 +2,12 @@
   "name": "ysparadox",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "protogen": "nx g rm ysproto && nx workspace-generator ysproto-gen"
+  },
   "private": true,
   "dependencies": {
+    "@protobuf-ts/runtime": "latest",
     "long": "^5.2.0",
     "remove": "^0.1.5",
     "tslib": "^2.0.0"
@@ -20,6 +23,7 @@
     "@nrwl/nx-cloud": "latest",
     "@nrwl/tao": "13.8.5",
     "@nrwl/workspace": "13.8.5",
+    "@protobuf-ts/plugin": "^2.2.2",
     "@types/jest": "27.0.2",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "~5.10.0",

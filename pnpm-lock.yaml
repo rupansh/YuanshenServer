@@ -11,6 +11,8 @@ specifiers:
   '@nrwl/nx-cloud': latest
   '@nrwl/tao': 13.8.5
   '@nrwl/workspace': 13.8.5
+  '@protobuf-ts/plugin': ^2.2.2
+  '@protobuf-ts/runtime': latest
   '@types/jest': 27.0.2
   '@types/node': 16.11.7
   '@typescript-eslint/eslint-plugin': ~5.10.0
@@ -26,6 +28,7 @@ specifiers:
   typescript: ~4.5.2
 
 dependencies:
+  '@protobuf-ts/runtime': 2.2.2
   long: 5.2.0
   remove: 0.1.5
   tslib: 2.3.1
@@ -41,6 +44,7 @@ devDependencies:
   '@nrwl/nx-cloud': 13.1.6
   '@nrwl/tao': 13.8.5
   '@nrwl/workspace': 13.8.5_a945cf57d5944e875bf896a5a1e53eb0
+  '@protobuf-ts/plugin': 2.2.2
   '@types/jest': 27.0.2
   '@types/node': 16.11.7
   '@typescript-eslint/eslint-plugin': 5.10.2_61711575dd6de0ced61e0bccc6181943
@@ -1099,6 +1103,38 @@ packages:
       esquery: 1.4.0
       typescript: 4.5.5
     dev: true
+
+  /@protobuf-ts/plugin-framework/2.2.2:
+    resolution: {integrity: sha512-aBqsCgSz5BCrWxjQPAhI8GAae4JV4pZyiLjuVMKA4On4lIGfGtMd4fu6MD6DW/h/fTC3Rkn/hrHlR4bELi+K0A==}
+    dependencies:
+      '@protobuf-ts/runtime': 2.2.2
+      typescript: 3.9.10
+    dev: true
+
+  /@protobuf-ts/plugin/2.2.2:
+    resolution: {integrity: sha512-l94LTWWfmWIPntNEyJXC1xRqABCF7FC9uEPKWs6/k8Eyfkf+au1wUMomeC6iZDEAKfB43C1yl4DdYj/VoxmGaQ==}
+    hasBin: true
+    dependencies:
+      '@protobuf-ts/plugin-framework': 2.2.2
+      '@protobuf-ts/protoc': 2.2.2
+      '@protobuf-ts/runtime': 2.2.2
+      '@protobuf-ts/runtime-rpc': 2.2.2
+      typescript: 3.9.10
+    dev: true
+
+  /@protobuf-ts/protoc/2.2.2:
+    resolution: {integrity: sha512-zRMx2m89DLXvQ8iIcEuYKMxZ0BVSZ1LDNACAAAaUWwIi9pkdAvhQCkMivpVHrlzSYtDemnpazhbZ+9Kz9+QqBw==}
+    hasBin: true
+    dev: true
+
+  /@protobuf-ts/runtime-rpc/2.2.2:
+    resolution: {integrity: sha512-Fbv4sCyrdl4z67uLdZD8nOE+T06N/rCYQDLroGRUJ/sYhTcua0H3ls2id+RkpYGh/P8rJH3ldHBptsRYShGAyQ==}
+    dependencies:
+      '@protobuf-ts/runtime': 2.2.2
+    dev: true
+
+  /@protobuf-ts/runtime/2.2.2:
+    resolution: {integrity: sha512-4tZToEhqCMwMb5PZ04xs7nRDmNGTy4ha8HNBdxmTnmVi4O0Ik/MlCTxX2v5P+OvqTN5CufXAaz7bmldf/fGLjg==}
 
   /@sinonjs/commons/1.8.3:
     resolution: {integrity: sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==}
@@ -4744,6 +4780,12 @@ packages:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
     dependencies:
       is-typedarray: 1.0.0
+    dev: true
+
+  /typescript/3.9.10:
+    resolution: {integrity: sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: true
 
   /typescript/4.5.5:

@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "ysproto-gen",
+  "type": "object",
+  "properties": {
+    "protos": {
+      "type": "string",
+      "description": "path to protos (default: assets/protos)",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    }
+  },
+  "required": []
+}
