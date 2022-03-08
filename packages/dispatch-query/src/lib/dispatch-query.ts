@@ -5,7 +5,7 @@ import { clientCustomConfig, defaultDispatchConfig, regionCustomConfig, regionIn
 
 export type DispatchKeys = {
   clientSk: Buffer,
-  e2cb: Buffer
+  ec2b: Buffer
 };
 
 export type DispatchConfig = {
@@ -24,7 +24,7 @@ export function dispatchQueryHandlers(keys: DispatchKeys, config = defaultDispat
       const regInf = regionSimpleInfo(config);
 
       const clientCustomConfigEnc = Buffer.from(clientCustomConfig);
-      ysXor(keys.e2cb, clientCustomConfigEnc);
+      ysXor(keys.ec2b, clientCustomConfigEnc);
   
       const regionList = QueryRegionListHttpRsp.create({
         regionList: [regInf],
@@ -39,7 +39,7 @@ export function dispatchQueryHandlers(keys: DispatchKeys, config = defaultDispat
       const regInf = regionInfo(keys.clientSk, config);
 
       const regionCustomConfigEnc = regionCustomConfig(config);
-      ysXor(keys.e2cb, regionCustomConfigEnc);
+      ysXor(keys.ec2b, regionCustomConfigEnc);
 
       const regionConfig = QueryCurrRegionHttpRsp.create({
         regionInfo: regInf,
