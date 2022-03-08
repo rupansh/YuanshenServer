@@ -1,0 +1,32 @@
+{
+  "root": "packages/dispatch-h4ke",
+  "sourceRoot": "packages/dispatch-h4ke/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/dispatch-h4ke",
+        "main": "packages/dispatch-h4ke/src/index.ts",
+        "tsConfig": "packages/dispatch-h4ke/tsconfig.lib.json",
+        "assets": ["packages/dispatch-h4ke/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/dispatch-h4ke/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/dispatch-h4ke"],
+      "options": {
+        "jestConfig": "packages/dispatch-h4ke/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

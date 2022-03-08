@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "types": ["node"],
     "paths": {
+      "@ysparadox/dispatch-h4ke": ["packages/dispatch-h4ke/src/index.ts"],
       "@ysparadox/dispatch-query": ["packages/dispatch-query/src/index.ts"],
       "@ysparadox/mt64": ["packages/mt64/src/index.ts"],
       "@ysparadox/yscrypt": ["packages/yscrypt/src/index.ts"],

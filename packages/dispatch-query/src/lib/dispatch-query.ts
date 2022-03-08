@@ -1,6 +1,6 @@
 import { ysXor } from "@ysparadox/yscrypt";
 import { QueryCurrRegionHttpRsp, QueryRegionListHttpRsp } from "@ysparadox/ysproto";
-import { clientCustomConfig, regionCustomConfig, regionInfo, regionSimpleInfo } from "./consts";
+import { clientCustomConfig, regionCustomConfig, regionInfo, regionSimpleInfo } from "./payloads";
 
 export type DispatchKeys = {
   clientSk: Buffer,
