@@ -8,6 +8,8 @@
   "private": true,
   "dependencies": {
     "@protobuf-ts/runtime": "latest",
+    "fp-ts": "^2.11.8",
+    "io-ts": "^2.2.16",
     "long": "^5.2.0",
     "tslib": "^2.0.0"
   },

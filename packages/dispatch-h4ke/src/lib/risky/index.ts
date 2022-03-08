@@ -1,15 +1,10 @@
+import { DispatchRiskySvc } from "@ysparadox/dispatch-ints";
 import { buildAccountData, DEFAULT_ACCOUNT_DATA } from "../payloads";
 import { mockTokenGen, dispatchHandler } from "../utils";
 
-export type ActionToCheck = {
-  action_name: string,
-  api_name: string,
-  username?: string
-}
-
-export function dispatchRiskyOldHandlers() {
+export function dispatchRiskyOldHandlers(): DispatchRiskySvc {
   return {
-    check: dispatchHandler<ActionToCheck>(() => {
+    check: dispatchHandler(() => {
       const payload = buildAccountData({
         ...DEFAULT_ACCOUNT_DATA,
         token: mockTokenGen()

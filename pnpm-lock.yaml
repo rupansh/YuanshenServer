@@ -19,6 +19,8 @@ specifiers:
   '@typescript-eslint/parser': ~5.10.0
   eslint: ~8.7.0
   eslint-config-prettier: 8.1.0
+  fp-ts: ^2.11.8
+  io-ts: ^2.2.16
   jest: 27.2.3
   long: ^5.2.0
   prettier: ^2.5.1
@@ -28,6 +30,8 @@ specifiers:
 
 dependencies:
   '@protobuf-ts/runtime': 2.2.2
+  fp-ts: 2.11.8
+  io-ts: 2.2.16_fp-ts@2.11.8
   long: 5.2.0
   tslib: 2.3.1
 
@@ -2658,6 +2662,10 @@ packages:
       mime-types: 2.1.34
     dev: true
 
+  /fp-ts/2.11.8:
+    resolution: {integrity: sha512-WQT6rP6Jt3TxMdQB3IKzvfZKLuldumntgumLhIUhvPrukTHdWNI4JgEHY04Bd0LIOR9IQRpB+7RuxgUU0Vhmcg==}
+    dev: false
+
   /fs-extra/9.1.0:
     resolution: {integrity: sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==}
     engines: {node: '>=10'}
@@ -2901,6 +2909,14 @@ packages:
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
+
+  /io-ts/2.2.16_fp-ts@2.11.8:
+    resolution: {integrity: sha512-y5TTSa6VP6le0hhmIyN0dqEXkrZeJLeC5KApJq6VLci3UEKF80lZ+KuoUs02RhBxNWlrqSNxzfI7otLX1Euv8Q==}
+    peerDependencies:
+      fp-ts: ^2.5.0
+    dependencies:
+      fp-ts: 2.11.8
+    dev: false
 
   /is-arrayish/0.2.1:
     resolution: {integrity: sha1-d8mYQFJ6qOyxqLppe4BkWnqSap0=}

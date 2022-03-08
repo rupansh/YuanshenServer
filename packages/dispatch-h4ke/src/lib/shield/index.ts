@@ -1,21 +1,11 @@
+import { DispatchShieldSvc } from "@ysparadox/dispatch-ints";
 import { buildAccountData, DEFAULT_ACCOUNT_DATA } from "../payloads";
 import { mockTokenGen, dispatchHandler } from "../utils";
 import { DEFAULT_SHIELD_LOAD_CONFIG } from "./resps";
 
-export type TokenToVerify = {
-  uid: string,
-  token: string
-};
-
-export type LoginData = {
-  account: string,
-  is_crypto: boolean,
-  password: string
-}
-
-export function dispatchShieldHandlers() {
+export function dispatchShieldHandlers(): DispatchShieldSvc {
   return {
-    login: dispatchHandler<LoginData>(() => {
+    login: dispatchHandler(() => {
       const payload = buildAccountData({
         ...DEFAULT_ACCOUNT_DATA,
         token: mockTokenGen()
@@ -23,7 +13,7 @@ export function dispatchShieldHandlers() {
 
       return [0, payload]
     }),
-    verify: dispatchHandler((data: TokenToVerify) => {
+    verify: dispatchHandler((data) => {
       const payload = buildAccountData({
         ...DEFAULT_ACCOUNT_DATA,
         ...data
@@ -31,6 +21,6 @@ export function dispatchShieldHandlers() {
       
       return [0, payload];
     }),
-    loadConfig: dispatchHandler<void>(() => [0, JSON.stringify(DEFAULT_SHIELD_LOAD_CONFIG)]),
+    loadConfig: dispatchHandler(() => [0, JSON.stringify(DEFAULT_SHIELD_LOAD_CONFIG)]),
   }
 }
