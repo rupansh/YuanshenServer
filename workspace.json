@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "dispatch-geetest": "packages/dispatch-geetest",
     "dispatch-h4ke": "packages/dispatch-h4ke",
     "dispatch-query": "packages/dispatch-query",
     "mt64": "packages/mt64",
