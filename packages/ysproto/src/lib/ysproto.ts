@@ -70,5 +70,5 @@ export * from './generated/GrowCurveType_pb';
 export * from './generated/ArithType_pb';
 export * from './generated/FightPropType_pb';
 export * from './generated/PropType_pb';
-import packetIds = require('./generated/packetIds.json');
+import * as packetIds from './generated/packetIds.json';
 export { packetIds };

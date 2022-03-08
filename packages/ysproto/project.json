@@ -3,6 +3,16 @@
   "sourceRoot": "packages/ysproto/src",
   "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/ysproto",
+        "main": "packages/ysproto/src/index.ts",
+        "tsConfig": "packages/ysproto/tsconfig.lib.json",
+        "assets": ["packages/ysproto/*.md"]
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

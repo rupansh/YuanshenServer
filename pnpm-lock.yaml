@@ -7,7 +7,7 @@ specifiers:
   '@nrwl/jest': 13.8.5
   '@nrwl/js': 13.8.5
   '@nrwl/linter': 13.8.5
-  '@nrwl/node': ^13.8.5
+  '@nrwl/node': 13.8.5
   '@nrwl/nx-cloud': latest
   '@nrwl/tao': 13.8.5
   '@nrwl/workspace': 13.8.5
@@ -22,7 +22,6 @@ specifiers:
   jest: 27.2.3
   long: ^5.2.0
   prettier: ^2.5.1
-  remove: ^0.1.5
   ts-jest: 27.0.5
   tslib: ^2.0.0
   typescript: ~4.5.2
@@ -30,7 +29,6 @@ specifiers:
 dependencies:
   '@protobuf-ts/runtime': 2.2.2
   long: 5.2.0
-  remove: 0.1.5
   tslib: 2.3.1
 
 devDependencies:
@@ -1982,12 +1980,6 @@ packages:
     resolution: {integrity: sha512-rI1UN0koZUiKINjysQDuRi2VeSCce3bYJNmDcj3PIKREiAmjakugBul1QSkg/fPrlULYl6oWfGg3PbgOSY9X4Q==}
     dev: true
 
-  /chainsaw/0.0.9:
-    resolution: {integrity: sha1-EaBRAtHEx4W20EFdM21aOhYSkT4=}
-    dependencies:
-      traverse: 0.3.9
-    dev: false
-
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -2815,12 +2807,6 @@ packages:
     dependencies:
       function-bind: 1.1.1
     dev: true
-
-  /hashish/0.0.4:
-    resolution: {integrity: sha1-bWC8b/r3Ebav1g5CbQd5iAFOZVQ=}
-    dependencies:
-      traverse: 0.6.6
-    dev: false
 
   /html-encoding-sniffer/2.0.1:
     resolution: {integrity: sha512-D5JbOMBIR/TVZkubHT+OyT2705QvogUW4IBn6nHd756OwieSF9aDYFj4dv6HHEVGYbHaLETa3WggZYWWMyy3ZQ==}
@@ -4198,12 +4184,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /remove/0.1.5:
-    resolution: {integrity: sha1-CV/9gn1lyfQa2X0z5BanWBEHmVU=}
-    dependencies:
-      seq: 0.3.5
-    dev: false
-
   /require-directory/2.1.1:
     resolution: {integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=}
     engines: {node: '>=0.10.0'}
@@ -4345,13 +4325,6 @@ packages:
     dependencies:
       lru-cache: 6.0.0
     dev: true
-
-  /seq/0.3.5:
-    resolution: {integrity: sha1-rgKvOkJHk9jMvyEtaRdODFTf/jg=}
-    dependencies:
-      chainsaw: 0.0.9
-      hashish: 0.0.4
-    dev: false
 
   /serialize-javascript/6.0.0:
     resolution: {integrity: sha512-Qr3TosvguFt8ePWqsvRfrKyQXIiW+nGbYpy8XK24NQHE83caxWt+mIymTT19DGFbNWNLfEwsrkSmN64lVWB9ag==}
@@ -4637,14 +4610,6 @@ packages:
     dependencies:
       punycode: 2.1.1
     dev: true
-
-  /traverse/0.3.9:
-    resolution: {integrity: sha1-cXuPIgzAu3tE5AUUwisui7xw2Lk=}
-    dev: false
-
-  /traverse/0.6.6:
-    resolution: {integrity: sha1-y99WD9e5r2MlAv7UD5GMFX6pcTc=}
-    dev: false
 
   /tree-kill/1.2.2:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}

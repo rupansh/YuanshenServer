@@ -1,5 +1,5 @@
-import { Tree, formatFiles, installPackagesTask, addDependenciesToPackageJson, generateFiles, readProjectConfiguration, writeJson } from '@nrwl/devkit';
-import { libraryGenerator } from '@nrwl/node';
+import { Tree, formatFiles, installPackagesTask, addDependenciesToPackageJson, generateFiles, readProjectConfiguration, writeJson, addProjectConfiguration } from '@nrwl/devkit';
+import { libraryGenerator } from '@nrwl/workspace/generators';
 import * as fs from 'fs';
 import path = require('path');
 import { PROTOS_DEFAULT, PROTOS_PROJECT } from './consts';
@@ -8,8 +8,8 @@ import { generateProtoBufExports, generateProtoBufs } from './protobufUtils';
 
 async function generateLibIndex() {
   const libExports = generateProtoBufExports();
-  const packetIdExport = `import packetIds = require(\"./generated/packetIds.json\");
-export { packetIds };`
+  const packetIdExport = `import * as packetIds from \"./generated/packetIds.json\";
+export { packetIds };`;
 
   libExports.push(packetIdExport);
 
@@ -19,11 +19,12 @@ export { packetIds };`
 }
 
 export default async function (tree: Tree, schema: any) {
-  await libraryGenerator(tree, { name: PROTOS_PROJECT });
+  await libraryGenerator(tree, { name: PROTOS_PROJECT, buildable: true });
   addDependenciesToPackageJson(tree, { "@protobuf-ts/runtime": "latest" }, {});
 
+  const projectConfig = readProjectConfiguration(tree, PROTOS_PROJECT);
   const protosLoc = schema.protos || PROTOS_DEFAULT;
-  const libRoot = readProjectConfiguration(tree, PROTOS_PROJECT).root;
+  const libRoot = projectConfig.root;
 
   await generateProtoBufs(protosLoc);
   await generateLibIndex();

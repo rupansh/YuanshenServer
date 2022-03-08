@@ -3,13 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "protogen": "nx g rm ysproto && nx workspace-generator ysproto-gen"
+    "protogen": "test -d packages/ysproto && nx g rm ysproto; nx workspace-generator ysproto-gen"
   },
   "private": true,
   "dependencies": {
     "@protobuf-ts/runtime": "latest",
     "long": "^5.2.0",
-    "remove": "^0.1.5",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
@@ -19,7 +18,7 @@
     "@nrwl/jest": "13.8.5",
     "@nrwl/js": "13.8.5",
     "@nrwl/linter": "13.8.5",
-    "@nrwl/node": "^13.8.5",
+    "@nrwl/node": "13.8.5",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/tao": "13.8.5",
     "@nrwl/workspace": "13.8.5",

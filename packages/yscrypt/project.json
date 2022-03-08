@@ -1,8 +1,17 @@
 {
   "root": "packages/yscrypt",
   "sourceRoot": "packages/yscrypt/src",
-  "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/yscrypt",
+        "main": "packages/yscrypt/src/index.ts",
+        "tsConfig": "packages/yscrypt/tsconfig.lib.json",
+        "assets": ["packages/yscrypt/*.md"]
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
@@ -16,17 +25,6 @@
       "options": {
         "jestConfig": "packages/yscrypt/jest.config.js",
         "passWithNoTests": true
-      }
-    },
-    "build": {
-      "executor": "@nrwl/node:package",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/yscrypt",
-        "tsConfig": "packages/yscrypt/tsconfig.lib.json",
-        "packageJson": "packages/yscrypt/package.json",
-        "main": "packages/yscrypt/src/index.ts",
-        "assets": ["packages/yscrypt/*.md"]
       }
     }
   },
