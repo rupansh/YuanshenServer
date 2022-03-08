@@ -1,7 +1,7 @@
 import { DispatchQuerySvc } from "@ysparadox/dispatch-ints";
 import { ysXor } from "@ysparadox/yscrypt";
 import { QueryCurrRegionHttpRsp, QueryRegionListHttpRsp } from "@ysparadox/ysproto";
-import { clientCustomConfig, regionCustomConfig, regionInfo, regionSimpleInfo } from "./payloads";
+import { clientCustomConfig, defaultDispatchConfig, regionCustomConfig, regionInfo, regionSimpleInfo } from "./payloads";
 
 export type DispatchKeys = {
   clientSk: Buffer,
@@ -15,7 +15,7 @@ export type DispatchConfig = {
   gateServerPort: number
 }
 
-export async function dispatchQueryHandlers(keys: DispatchKeys, config: DispatchConfig): Promise<DispatchQuerySvc> {
+export function dispatchQueryHandlers(keys: DispatchKeys, config = defaultDispatchConfig): DispatchQuerySvc {
   return {
     querySecurityFile() {
       return "";

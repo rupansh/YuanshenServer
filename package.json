@@ -7,10 +7,15 @@
   },
   "private": true,
   "dependencies": {
+    "@marblejs/core": "^4.0.3",
+    "@marblejs/http": "^4.0.3",
+    "@marblejs/middleware-body": "^4.0.3",
+    "@marblejs/middleware-io": "^4.0.3",
     "@protobuf-ts/runtime": "latest",
     "fp-ts": "^2.11.8",
     "io-ts": "^2.2.16",
     "long": "^5.2.0",
+    "rxjs": "^7.5.5",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

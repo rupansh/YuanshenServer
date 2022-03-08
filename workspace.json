@@ -6,6 +6,7 @@
     "dispatch-ints": "packages/dispatch-ints",
     "dispatch-logger": "packages/dispatch-logger",
     "dispatch-query": "packages/dispatch-query",
+    "dispatch-server": "packages/dispatch-server",
     "mt64": "packages/mt64",
     "yscrypt": "packages/yscrypt",
     "ysproto": "packages/ysproto"
