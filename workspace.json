@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "dispatch-query": "packages/dispatch-query",
     "mt64": "packages/mt64",
     "yscrypt": "packages/yscrypt",
     "ysproto": "packages/ysproto"

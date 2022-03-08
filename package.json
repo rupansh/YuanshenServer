@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "protogen": "test -d packages/ysproto && nx g rm ysproto; nx workspace-generator ysproto-gen"
+    "protogen": "test -d packages/ysproto && nx g rm ysproto --forceRemove; nx workspace-generator ysproto-gen"
   },
   "private": true,
   "dependencies": {

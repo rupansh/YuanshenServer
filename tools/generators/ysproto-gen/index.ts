@@ -19,7 +19,7 @@ export { packetIds };`;
 }
 
 export default async function (tree: Tree, schema: any) {
-  await libraryGenerator(tree, { name: PROTOS_PROJECT, buildable: true });
+  await libraryGenerator(tree, { name: PROTOS_PROJECT, buildable: true, linter: "none" });
   addDependenciesToPackageJson(tree, { "@protobuf-ts/runtime": "latest" }, {});
 
   const projectConfig = readProjectConfiguration(tree, PROTOS_PROJECT);

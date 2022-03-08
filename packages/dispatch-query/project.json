@@ -1,0 +1,32 @@
+{
+  "root": "packages/dispatch-query",
+  "sourceRoot": "packages/dispatch-query/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/dispatch-query",
+        "main": "packages/dispatch-query/src/index.ts",
+        "tsConfig": "packages/dispatch-query/tsconfig.lib.json",
+        "assets": ["packages/dispatch-query/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/dispatch-query/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/dispatch-query"],
+      "options": {
+        "jestConfig": "packages/dispatch-query/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
