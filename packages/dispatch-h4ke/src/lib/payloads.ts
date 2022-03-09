@@ -9,7 +9,7 @@ export type AccountData = AccountDataMin & {
 }
 
 export function buildAccountData({ email, name, uid, token }: AccountData) {
-    const payload = {
+    return {
         "account": {
             "apple_name": "",
             "area_code": "**",
@@ -37,12 +37,10 @@ export function buildAccountData({ email, name, uid, token }: AccountData) {
         "realname_operation": "None",
         "safe_moblie_required": "false"
     };
-
-    return JSON.stringify(payload);
 }
 
 
-export function buildDispatchResponse(code: number, data: string | null) {
+export function buildDispatchResponse<T>(code: number, data: T | null) {
     let message: string;
     switch (code) {
         case 0:

@@ -21,6 +21,6 @@ export function dispatchShieldHandlers(): DispatchShieldSvc {
       
       return [0, payload];
     }),
-    loadConfig: dispatchHandler(() => [0, JSON.stringify(DEFAULT_SHIELD_LOAD_CONFIG)]),
+    loadConfig: dispatchHandler(() => [0, DEFAULT_SHIELD_LOAD_CONFIG]),
   }
 }

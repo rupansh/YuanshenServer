@@ -9,8 +9,8 @@ export function dispatchComboHandlers(): DispatchComboSvc {
 
             return [0, payload]
         }),
-        getConfig: dispatchHandler(() => [0, JSON.stringify(DEFAULT_GRANTER_GET_CONFIG)]),
-        compareProtocolVersion: dispatchHandler(() => [0, JSON.stringify(DEFAULT_GRANTER_CMP_PROT_V)]),
-        combo: dispatchHandler(() => [0, JSON.stringify(DEFAULT_COMBO_COMBO)])
+        getConfig: dispatchHandler(() => [0, DEFAULT_GRANTER_GET_CONFIG]),
+        compareProtocolVersion: dispatchHandler(() => [0, DEFAULT_GRANTER_CMP_PROT_V]),
+        combo: dispatchHandler(() => [0, DEFAULT_COMBO_COMBO])
     }
 }

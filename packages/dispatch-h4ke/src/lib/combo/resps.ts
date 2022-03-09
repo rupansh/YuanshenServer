@@ -7,7 +7,7 @@ export function verifyTokenV2(token: string) {
         heartbeat: false,
         open_id: 0x1234
     };
-    return JSON.stringify(payload);
+    return payload;
 }
 
 export const DEFAULT_GRANTER_GET_CONFIG = {
