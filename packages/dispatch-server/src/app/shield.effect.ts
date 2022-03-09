@@ -1,4 +1,5 @@
 import { combineRoutes, r } from "@marblejs/http";
+import { bodyParser$ } from "@marblejs/middleware-body";
 import { requestValidator$ } from "@marblejs/middleware-io";
 import { LoginData, TokenToVerify } from "@ysparadox/dispatch-ints";
 import { map } from "rxjs";
@@ -32,8 +33,7 @@ const getLoadConfig$ = r.pipe(
     ))
 )
 
-export const shield$ = combineRoutes("/h4ke_global/mdk/shield/api", [
-    postVerify$,
-    postLogin$,
-    getLoadConfig$
-]);
+export const shield$ = combineRoutes("/hk4e_global/mdk/shield/api", {
+    middlewares: [bodyParser$()],
+    effects: [postVerify$, postLogin$, getLoadConfig$]
+});

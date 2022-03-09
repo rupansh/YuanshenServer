@@ -1,4 +1,5 @@
 import { combineRoutes, r } from "@marblejs/http";
+import { bodyParser$ } from "@marblejs/middleware-body";
 import { requestValidator$ } from "@marblejs/middleware-io";
 import { GeetestAjaxData, GeetestGetData, GeetestGetTypeData } from "@ysparadox/dispatch-ints";
 import { map } from "rxjs";
@@ -42,9 +43,12 @@ const postAjax$ = r.pipe(
     ))
 );
 
-export const geetest$ = combineRoutes("/", [
-    get$,
-    getType$,
-    getAjax$,
-    postAjax$
-]);
+export const geetest$ = combineRoutes("/", {
+    middlewares: [bodyParser$()],
+    effects: [
+        get$,
+        getType$,
+        getAjax$,
+        postAjax$
+    ]
+});

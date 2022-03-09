@@ -1,7 +1,7 @@
 import * as t from "io-ts";
 
 export const ActionToCheck = t.intersection([t.type({
-    action_name: t.string,
+    action_type: t.string,
     api_name: t.string,
 }), t.partial({
     username: t.string

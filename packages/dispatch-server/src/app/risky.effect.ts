@@ -1,4 +1,5 @@
 import { combineRoutes, r } from "@marblejs/http";
+import { bodyParser$ } from "@marblejs/middleware-body";
 import { requestValidator$ } from "@marblejs/middleware-io";
 import { ActionToCheck } from "@ysparadox/dispatch-ints";
 import { map } from "rxjs";
@@ -15,4 +16,7 @@ const postCheck$ = r.pipe(
     ))
 )
 
-export const risky$ = combineRoutes("/account/risky/api", [postCheck$]);
+export const risky$ = combineRoutes("/account/risky/api", {
+    middlewares: [bodyParser$()],
+    effects: [postCheck$]
+});

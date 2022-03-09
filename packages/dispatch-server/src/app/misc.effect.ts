@@ -1,4 +1,5 @@
 import { combineRoutes, r } from "@marblejs/http";
+import { bodyParser$ } from "@marblejs/middleware-body";
 import { requestValidator$ } from "@marblejs/middleware-io";
 import { MinorApiLogData } from "@ysparadox/dispatch-ints";
 import { map } from "rxjs";
@@ -32,8 +33,11 @@ const postH5Log$ = r.pipe(
     ))
 );
 
-export const misc$ = combineRoutes("/", [
-    getAgreementInfo$,
-    getVersionData$,
-    postH5Log$
-]);
+export const misc$ = combineRoutes("/", {
+    middlewares: [bodyParser$()],
+    effects: [
+        getAgreementInfo$,
+        getVersionData$,
+        postH5Log$
+    ]
+});

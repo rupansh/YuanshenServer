@@ -1,4 +1,5 @@
 import { combineRoutes, r } from "@marblejs/http";
+import { bodyParser$ } from "@marblejs/middleware-body";
 import { requestValidator$ } from "@marblejs/middleware-io";
 import { GranterData } from "@ysparadox/dispatch-ints";
 import { map } from "rxjs";
@@ -36,7 +37,10 @@ const api$ = combineRoutes('/api', [
     postCmpProtoVer$
 ]);
 
-export const combo$ = combineRoutes('/hk4e_global/combo/granter', [
-    postLogin$,
-    api$
-]);
+export const combo$ = combineRoutes('/hk4e_global/combo/granter', {
+    middlewares: [bodyParser$()],
+    effects: [
+        postLogin$,
+        api$
+    ]
+});
