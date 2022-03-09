@@ -1,0 +1,17 @@
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+
+  [entryPoints.websecure]
+    address = ":443"
+
+[[tls.certificates]]
+  certFile = "/assets/keys/ssl.cer"
+  keyFile = "/assets/keys/ssl.key"
+
+[api]
+  dashboard = true
+  insecure = true
+[providers.docker]
+  watch = true
+  exposedByDefault = false

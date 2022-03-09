@@ -1,0 +1,5 @@
+.vscode
+dist
+tmp
+node_modules
+assets

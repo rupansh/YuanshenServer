@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.6
+    command:
+      - "--providers:docker=true"
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - ./traefik.toml:/traefik.toml
+     - ./assets:/assets:ro
+
+  dispatch-server:
+    environment:
+      - PORT=4222
+    expose:
+      - "4222"
+    build:
+      dockerfile: ./packages/dispatch-server/Dockerfile
+    restart: always
+    volumes:
+      - ./assets:/app/assets:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dispatch-server.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.dispatch-server.entrypoints=web"
+      - "traefik.http.routers.dispatch-server-secure.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.dispatch-server-secure.entrypoints=websecure"
+      - "traefik.http.routers.dispatch-server-secure.tls=true"
