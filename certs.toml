@@ -1,0 +1,14 @@
+[tls.options]
+  [tls.options.default]
+    sniStrict = false
+
+[tls.stores]
+  [tls.stores.default]
+    [tls.stores.default.defaultCertificate]
+      certFile = "/assets/keys/ssl.cer"
+      keyFile = "/assets/keys/ssl.key"
+
+[[tls.certificates]]
+  certFile = "/assets/keys/ssl.cer"
+  keyFile = "/assets/keys/ssl.key"
+  stores = ["default"]
