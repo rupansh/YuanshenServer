@@ -1,4 +1,5 @@
 import { httpListener } from "@marblejs/http"
+import { combo$ } from "./combo.effect";
 import { geetest$ } from "./geetest.effect";
 import { log$ } from "./log.effect";
 import { misc$ } from "./misc.effect";
@@ -13,6 +14,7 @@ export const listener = httpListener({
         query$,
         shield$,
         risky$,
+        combo$,
         geetest$,
         misc$,
         log$
