@@ -19,7 +19,7 @@ export type Deps = {
 
 async function loadKeys(): Promise<DispatchKeys> {
     return {
-        clientSk: await fs.promises.readFile(path.join(QUERY_KEYS_LOC, "master.key")),
+        xorKey: await fs.promises.readFile(path.join(QUERY_KEYS_LOC, "master.key")),
         ec2b: await fs.promises.readFile(path.join(QUERY_KEYS_LOC, "master.ec2b"))
     }
 }

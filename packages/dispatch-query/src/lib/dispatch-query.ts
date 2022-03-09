@@ -4,7 +4,7 @@ import { QueryCurrRegionHttpRsp, QueryRegionListHttpRsp } from "@ysparadox/yspro
 import { clientCustomConfig, defaultDispatchConfig, regionCustomConfig, regionInfo, regionSimpleInfo } from "./payloads";
 
 export type DispatchKeys = {
-  clientSk: Buffer,
+  xorKey: Buffer,
   ec2b: Buffer
 };
 
@@ -24,26 +24,26 @@ export function dispatchQueryHandlers(keys: DispatchKeys, config = defaultDispat
       const regInf = regionSimpleInfo(config);
 
       const clientCustomConfigEnc = Buffer.from(clientCustomConfig);
-      ysXor(keys.ec2b, clientCustomConfigEnc);
+      ysXor(keys.xorKey, clientCustomConfigEnc);
   
       const regionList = QueryRegionListHttpRsp.create({
         regionList: [regInf],
         enableLoginPc: true,
-        clientSecretKey: keys.clientSk,
+        clientSecretKey: keys.ec2b,
         clientCustomConfigEncrypted: clientCustomConfigEnc,
       });
 
       return Buffer.from(QueryRegionListHttpRsp.toBinary(regionList)).toString("base64");
     },
     queryCurRegion() {
-      const regInf = regionInfo(keys.clientSk, config);
+      const regInf = regionInfo(keys.xorKey, config);
 
       const regionCustomConfigEnc = regionCustomConfig(config);
       ysXor(keys.ec2b, regionCustomConfigEnc);
 
       const regionConfig = QueryCurrRegionHttpRsp.create({
         regionInfo: regInf,
-        clientSecretKey: keys.clientSk,
+        clientSecretKey: keys.xorKey,
         regionCustomConfigEncrypted: regionCustomConfigEnc
       });
 

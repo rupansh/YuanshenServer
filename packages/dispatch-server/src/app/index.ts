@@ -9,7 +9,6 @@ export const SvcsToken = createContextToken<Deps>('Deps');
 export const main = async () =>  {
     const server = await createServer({
         port: environment.port,
-        hostname: "arch",
         listener,
         dependencies: [
             bindEagerlyTo(SvcsToken)(async () => await deps())

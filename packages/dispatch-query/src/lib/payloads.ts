@@ -1,10 +1,9 @@
 import { RegionInfo, RegionSimpleInfo } from "@ysparadox/ysproto";
-import * as os from "os";
 import { DispatchConfig } from "./dispatch-query";
 
 
 export const defaultDispatchConfig: DispatchConfig = {
-    dispatchHost: os.hostname(),
+    dispatchHost: "localhost",
     gateServerIp: "127.0.0.1",
     dispatchPort: 80,
     gateServerPort: 4242
