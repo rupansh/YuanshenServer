@@ -1,32 +1,32 @@
 {
-  "root": "packages/dispatch-logger",
-  "sourceRoot": "packages/dispatch-logger/src",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/dispatch-logger",
-        "main": "packages/dispatch-logger/src/index.ts",
-        "tsConfig": "packages/dispatch-logger/tsconfig.lib.json",
-        "assets": ["packages/dispatch-logger/*.md"]
-      }
+    "root": "packages/dispatch-logger",
+    "sourceRoot": "packages/dispatch-logger/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/dispatch-logger",
+                "main": "packages/dispatch-logger/src/index.ts",
+                "tsConfig": "packages/dispatch-logger/tsconfig.lib.json",
+                "assets": ["packages/dispatch-logger/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/dispatch-logger/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/dispatch-logger"],
+            "options": {
+                "jestConfig": "packages/dispatch-logger/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/dispatch-logger/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/dispatch-logger"],
-      "options": {
-        "jestConfig": "packages/dispatch-logger/jest.config.js",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

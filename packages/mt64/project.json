@@ -1,32 +1,32 @@
 {
-  "root": "packages/mt64",
-  "sourceRoot": "packages/mt64/src",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/mt64",
-        "main": "packages/mt64/src/index.ts",
-        "tsConfig": "packages/mt64/tsconfig.lib.json",
-        "assets": ["packages/mt64/*.md"]
-      }
+    "root": "packages/mt64",
+    "sourceRoot": "packages/mt64/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/mt64",
+                "main": "packages/mt64/src/index.ts",
+                "tsConfig": "packages/mt64/tsconfig.lib.json",
+                "assets": ["packages/mt64/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/mt64/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/mt64"],
+            "options": {
+                "jestConfig": "packages/mt64/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/mt64/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/mt64"],
-      "options": {
-        "jestConfig": "packages/mt64/jest.config.js",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

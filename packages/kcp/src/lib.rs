@@ -9,6 +9,11 @@ fn kcp_err(er: kcp::Error) -> Error {
     Error::from_reason(format!("kcp error {}", er))
 }
 
+#[napi]
+fn get_conv(packet: Buffer) -> u32 {
+    kcp::get_conv(&packet)
+}
+
 #[derive(Clone)]
 struct KcpContext {
     address: JsString,

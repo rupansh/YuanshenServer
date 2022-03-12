@@ -1,32 +1,32 @@
 {
-  "root": "packages/yscrypt",
-  "sourceRoot": "packages/yscrypt/src",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/yscrypt",
-        "main": "packages/yscrypt/src/index.ts",
-        "tsConfig": "packages/yscrypt/tsconfig.lib.json",
-        "assets": ["packages/yscrypt/*.md"]
-      }
+    "root": "packages/yscrypt",
+    "sourceRoot": "packages/yscrypt/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/yscrypt",
+                "main": "packages/yscrypt/src/index.ts",
+                "tsConfig": "packages/yscrypt/tsconfig.lib.json",
+                "assets": ["packages/yscrypt/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/yscrypt/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/yscrypt"],
+            "options": {
+                "jestConfig": "packages/yscrypt/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/yscrypt/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/yscrypt"],
-      "options": {
-        "jestConfig": "packages/yscrypt/jest.config.js",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

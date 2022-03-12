@@ -5,6 +5,7 @@ import { none, Option,  isNone, some } from "fp-ts/lib/Option";
 import Long = require("long");
 
 export type KcpContext = Parameters<Kcp["switchContext"]>[0];
+export type KcpClientConn = ReturnType<typeof kcpClientConn>
 
 export function kcpUdpSender(socket: dgram.Socket): KcpSender {
     return KcpSender.new((data, size, ctx) => socket.send(data, 0, size, ctx.port, ctx.address))

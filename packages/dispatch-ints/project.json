@@ -1,32 +1,32 @@
 {
-  "root": "packages/dispatch-ints",
-  "sourceRoot": "packages/dispatch-ints/src",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/dispatch-ints",
-        "main": "packages/dispatch-ints/src/index.ts",
-        "tsConfig": "packages/dispatch-ints/tsconfig.lib.json",
-        "assets": ["packages/dispatch-ints/*.md"]
-      }
+    "root": "packages/dispatch-ints",
+    "sourceRoot": "packages/dispatch-ints/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/dispatch-ints",
+                "main": "packages/dispatch-ints/src/index.ts",
+                "tsConfig": "packages/dispatch-ints/tsconfig.lib.json",
+                "assets": ["packages/dispatch-ints/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/dispatch-ints/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/dispatch-ints"],
+            "options": {
+                "jestConfig": "packages/dispatch-ints/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/dispatch-ints/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/dispatch-ints"],
-      "options": {
-        "jestConfig": "packages/dispatch-ints/jest.config.js",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

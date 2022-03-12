@@ -1,26 +1,26 @@
 {
-  "root": "packages/ysproto",
-  "sourceRoot": "packages/ysproto/src",
-  "projectType": "library",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/ysproto",
-        "main": "packages/ysproto/src/index.ts",
-        "tsConfig": "packages/ysproto/tsconfig.lib.json",
-        "assets": ["packages/ysproto/*.md"]
-      }
+    "root": "packages/ysproto",
+    "sourceRoot": "packages/ysproto/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/ysproto",
+                "main": "packages/ysproto/src/index.ts",
+                "tsConfig": "packages/ysproto/tsconfig.lib.json",
+                "assets": ["packages/ysproto/*.md"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/ysproto"],
+            "options": {
+                "jestConfig": "packages/ysproto/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
     },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/ysproto"],
-      "options": {
-        "jestConfig": "packages/ysproto/jest.config.js",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

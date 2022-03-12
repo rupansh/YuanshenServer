@@ -1,45 +1,45 @@
 {
-  "root": "packages/dispatch-server",
-  "sourceRoot": "packages/dispatch-server/src",
-  "projectType": "application",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/node:webpack",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/dispatch-server",
-        "main": "packages/dispatch-server/src/main.ts",
-        "tsConfig": "packages/dispatch-server/tsconfig.app.json"
-      },
-      "configurations": {
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false
+    "root": "packages/dispatch-server",
+    "sourceRoot": "packages/dispatch-server/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/node:webpack",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/dispatch-server",
+                "main": "packages/dispatch-server/src/main.ts",
+                "tsConfig": "packages/dispatch-server/tsconfig.app.json"
+            },
+            "configurations": {
+                "production": {
+                    "optimization": true,
+                    "extractLicenses": true,
+                    "inspect": false
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "dispatch-server:build"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/dispatch-server/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/dispatch-server"],
+            "options": {
+                "jestConfig": "packages/dispatch-server/jest.config.js",
+                "passWithNoTests": true
+            }
         }
-      }
     },
-    "serve": {
-      "executor": "@nrwl/node:node",
-      "options": {
-        "buildTarget": "dispatch-server:build"
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/dispatch-server/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/dispatch-server"],
-      "options": {
-        "jestConfig": "packages/dispatch-server/jest.config.js",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

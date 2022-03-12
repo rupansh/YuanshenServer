@@ -9,8 +9,7 @@
             "options": {
                 "outputPath": "dist/packages/network-server",
                 "main": "packages/network-server/src/main.ts",
-                "tsConfig": "packages/network-server/tsconfig.app.json",
-                "assets": ["packages/network-server/src/assets"]
+                "tsConfig": "packages/network-server/tsconfig.app.json"
             },
             "configurations": {
                 "production": {
