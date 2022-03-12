@@ -4,6 +4,7 @@ import { loadYsKeys } from "@ysparadox/ys-keys";
 import * as dgram from "dgram";
 import { Channel } from "@sidewinder/channel";
 import { packetHandlerHelper, PacketSender } from "@ysparadox/packet-handler";
+import { gamePacketHandler } from "../app/gamePacketHandler";
 
 export type Deps = Awaited<ReturnType<typeof createDeps>>;
 
@@ -19,13 +20,15 @@ export async function createDeps() {
     const keys = await loadYsKeys();
     const relayChannel = packetRelayChannel();
     const packetHandler = packetHandlerHelper((...args) => relayChannel.send(args));
+    const am = authManager(packetHandler);
 
     return {
         socket,
         kcpClientFactory: (ctx: KcpContext, conv: number, token: number) =>
             kcpClientConn(sender, ctx, conv, token, keys.xorKey),
-        authManager: authManager(),
+        authMan: authManager(packetHandler),
         relayChannel,
-        packetHandler
+        packetHandler,
+        gamePkHandler: gamePacketHandler(am, packetHandler)
     }
 }

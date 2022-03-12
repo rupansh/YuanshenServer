@@ -1,20 +1,14 @@
 import * as proto from "@ysparadox/ysproto";
 import { PacketHead } from "@ysparadox/ysproto";
-import { ProtoNameFromPacket, SupportedPacketId, DeriveProto, SupportedProtoName, Identity, SupportedRsp } from "./type-utils";
+import { ProtoNameFromPacket, SupportedPacketId, DeriveProto, SupportedProtoName, SupportedRsp, PacketFromProto } from "./type-utils";
 
 export type PacketHandler<Rq extends SupportedProtoName, Rs extends SupportedRsp> = {
     (userId: number, metadata: proto.PacketHead, req: DeriveProto<Rq>): Promise<DeriveProto<Rs>>
 }
 
-export type PacketHandlerSvc<Rq extends SupportedProtoName, Rs extends SupportedRsp> = {
-    protoReq: Rq,
-    protoRes: Rs,
-    protoHandler: (userId: number, metadata: proto.PacketHead, req: DeriveProto<Rq>) => Promise<DeriveProto<Rs>>
-};
-
 type PacketIdHandlers = {
-    get<K extends SupportedPacketId, R extends SupportedRsp>(k: K): PacketHandlerSvc<ProtoNameFromPacket<K>, R> | undefined;
-    set<K extends SupportedPacketId, R extends SupportedRsp>(k: K, p: PacketHandlerSvc<ProtoNameFromPacket<K>, R>): void;
+    get<K extends SupportedPacketId, R extends SupportedRsp>(k: K): [PacketHandler<ProtoNameFromPacket<K>, R>, R] | undefined;
+    set<K extends SupportedPacketId, R extends SupportedRsp>(k: K, p: [PacketHandler<ProtoNameFromPacket<K>, R>, R]): void;
 };
 
 type PacketHandlerHelper = ReturnType<typeof packetHandlerHelper>;
@@ -27,13 +21,16 @@ export function packetHandlerHelper(sender: PacketSender) {
     const handlers: PacketIdHandlers = new Map(); 
 
     return {
-        register<Rq extends SupportedProtoName & Identity<SupportedProtoName>, Rs extends SupportedRsp>(
-            handler: PacketHandlerSvc<Rq, Rs>,
+        register<Rq extends SupportedProtoName, Rs extends SupportedRsp>(
+            protoReq: Rq,
+            protoRes: Rs,
+            // ProtoNameFromPacket<PacketFromProto<Rq>> is same as Rq
+            handler: PacketHandler<ProtoNameFromPacket<PacketFromProto<Rq>>, Rs>,
         ) {
-            const packetId = proto.reversePacketIds[handler.protoReq];
-            handlers.set(packetId, handler)
+            const packetId = proto.reversePacketIds[protoReq];
+            handlers.set(packetId, [handler, protoRes])
         },
-        async handlePacket<P extends SupportedPacketId>(protoId: P, userId: number, metadata: proto.PacketHead, data: Buffer) {
+        async handlePacket<P extends SupportedPacketId>(protoId: P, userId: number, metadata: Buffer, data: Buffer) {
             const res = handlers.get(protoId);
             if (!res) {
                 console.warn("unhandled packet", protoId, "ignoring");
@@ -44,11 +41,11 @@ export function packetHandlerHelper(sender: PacketSender) {
 
             const req = reqProto.fromBinary(data) as DeriveProto<ProtoNameFromPacket<P>>;
 
-            const rsp = await res.protoHandler(userId, metadata, req);
-            const rspId = proto[`${res.protoRes}_CmdId`].CMD_ID;
-            const rspRaw = proto[`${res.protoRes}`].toBinary(rsp as never);
+            const rsp = await res[0](userId, PacketHead.fromBinary(metadata), req);
+            const rspId = proto[`${res[1]}_CmdId`].CMD_ID;
+            const rspRaw = proto[`${res[1]}`].toBinary(rsp as never);
 
-            sender(userId, rspId, Buffer.from(PacketHead.toBinary(metadata)), Buffer.from(rspRaw));
+            sender(userId, rspId, metadata, Buffer.from(rspRaw));
         } 
     }
 }

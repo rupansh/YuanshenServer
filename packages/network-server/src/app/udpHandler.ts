@@ -5,11 +5,11 @@ import { pipe } from "fp-ts/lib/function";
 import { Deps } from "../deps";
 import { KcpClientConn } from "@ysparadox/kcp-client-conn";
 import { getConv } from "@ysparadox/kcp";
-import { GetPlayerTokenRsp, reversePacketIds } from "@ysparadox/ysproto";
+import { GetPlayerTokenRsp } from "@ysparadox/ysproto";
 import Long = require("long");
+import { PLAYER_TOKEN_RSP_ID } from "./consts";
 
-const PLAYER_TOKEN_RSP_ID = parseInt(reversePacketIds["GetPlayerTokenRsp"]);
-
+// TODO: Add Game Server
 export function udpHandler(deps: Deps, host: string, port: number) {
     const socket = deps.socket;
     const clients: { [conv: number]: KcpClientConn } = {};
@@ -29,14 +29,11 @@ export function udpHandler(deps: Deps, host: string, port: number) {
     const packetHandler = (pkt: Buffer, rinfo: dgram.RemoteInfo) => {
         const conv = getConv(pkt);
         const client = clients[conv];
-        if (!client) {
-            console.error("unknown client! conv:", conv);
-            return;
-        }
+        if (!client) return console.error("unknown client! conv:", conv);
 
         client.updateSource(rinfo);
         for (const gamePkt of client.processUdpPacket(pkt)) {
-            // TODO
+            deps.gamePkHandler.processGamePacket(conv, gamePkt);
         }
     }
 
@@ -58,11 +55,11 @@ export function udpHandler(deps: Deps, host: string, port: number) {
     const packetRelayListener = async () => {
         for await (const [userId, packetId, metadata, data] of deps.relayChannel) {
             let conv = 0;
-            const isPTR = packetId == PLAYER_TOKEN_RSP_ID;
+            const isPTR = packetId.toString() == PLAYER_TOKEN_RSP_ID;
             if (isPTR) {
                 conv = userId;
             } else if (pipe(
-                deps.authManager.resolveConv(userId),
+                deps.authMan.resolveConv(userId),
                 map((c) => conv = c),
                 isNone
             )) {
