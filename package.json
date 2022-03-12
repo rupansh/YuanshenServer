@@ -12,6 +12,7 @@
     "@marblejs/middleware-body": "^4.0.3",
     "@marblejs/middleware-io": "^4.0.3",
     "@protobuf-ts/runtime": "latest",
+    "@sidewinder/channel": "^0.8.55",
     "fp-ts": "^2.11.8",
     "io-ts": "^2.2.16",
     "long": "^5.2.0",

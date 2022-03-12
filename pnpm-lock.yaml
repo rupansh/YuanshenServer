@@ -18,6 +18,7 @@ specifiers:
   '@nrwl/workspace': 13.8.5
   '@protobuf-ts/plugin': ^2.2.2
   '@protobuf-ts/runtime': latest
+  '@sidewinder/channel': ^0.8.55
   '@types/jest': 27.0.2
   '@types/node': 16.11.7
   '@typescript-eslint/eslint-plugin': ~5.10.0
@@ -42,6 +43,7 @@ dependencies:
   '@marblejs/middleware-body': 4.0.3_6d491607fda33bf1865d8a864bd9c83a
   '@marblejs/middleware-io': 4.0.3_6d491607fda33bf1865d8a864bd9c83a
   '@protobuf-ts/runtime': 2.2.2
+  '@sidewinder/channel': 0.8.55
   fp-ts: 2.11.8
   io-ts: 2.2.16_fp-ts@2.11.8
   long: 5.2.0
@@ -1234,6 +1236,16 @@ packages:
 
   /@protobuf-ts/runtime/2.2.2:
     resolution: {integrity: sha512-4tZToEhqCMwMb5PZ04xs7nRDmNGTy4ha8HNBdxmTnmVi4O0Ik/MlCTxX2v5P+OvqTN5CufXAaz7bmldf/fGLjg==}
+
+  /@sidewinder/async/0.8.55:
+    resolution: {integrity: sha512-giKdGHord3oaYfRGh2HNU9C1CJI4+JLjwA/QyYDAyzclvYLECfHCuwvanCUkVWrVvEAV2TJRilMw+9dsb5xcxg==}
+    dev: false
+
+  /@sidewinder/channel/0.8.55:
+    resolution: {integrity: sha512-KoBUsLf/IayjushNjomrY1/4jIOiDLGw3ZnHWBwK71hJ5h1d3g0MsiTGuV8sUIBBWTynUZ+H/7VimXHnoVoKMA==}
+    dependencies:
+      '@sidewinder/async': 0.8.55
+    dev: false
 
   /@sinonjs/commons/1.8.3:
     resolution: {integrity: sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==}
