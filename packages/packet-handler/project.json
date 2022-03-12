@@ -1,0 +1,32 @@
+{
+    "root": "packages/packet-handler",
+    "sourceRoot": "packages/packet-handler/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/packet-handler",
+                "main": "packages/packet-handler/src/index.ts",
+                "tsConfig": "packages/packet-handler/tsconfig.lib.json",
+                "assets": ["packages/packet-handler/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/packet-handler/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/packet-handler"],
+            "options": {
+                "jestConfig": "packages/packet-handler/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

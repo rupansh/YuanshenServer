@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as readline from "readline";
 import path = require("path");
+import * as util from "util";
 
 async function extractPacketId(protoPath: string): Promise<number | undefined> {
   const stream =  fs.createReadStream(protoPath);
@@ -31,5 +32,11 @@ export async function generatePackedIds(protosLoc: string) {
     ret[cmdid] = protos[i].slice(0, protos[i].length - 6);
   }
 
-  return ret;
+  const retRev = Object.fromEntries(Object.entries(ret).map(([k, v]) => [v, k]));
+
+  const packetIdsSrc = `export const packetIds = ${util.inspect(ret)} as const;
+export const reversePacketIds = ${util.inspect(retRev)} as const;\n`;
+
+  const genLoc = path.join(__dirname, "files/generated/packetIds.ts");
+  await fs.promises.writeFile(genLoc, packetIdsSrc);
 }

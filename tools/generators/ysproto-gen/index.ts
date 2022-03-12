@@ -8,8 +8,7 @@ import { generateProtoBufExports, generateProtoBufs } from './protobufUtils';
 
 async function generateLibIndex() {
   const libExports = generateProtoBufExports();
-  const packetIdExport = `import * as packetIds from \"./generated/packetIds.json\";
-export { packetIds };`;
+  const packetIdExport = `export * from \"./generated/packetIds\";`
 
   libExports.push(packetIdExport);
 
@@ -28,9 +27,8 @@ export default async function (tree: Tree, schema: any) {
 
   await generateProtoBufs(protosLoc);
   await generateLibIndex();
-  const packetIds = await generatePackedIds(protosLoc);
+  await generatePackedIds(protosLoc);
 
-  writeJson(tree, path.join(libRoot, "src/lib/generated/packetIds.json"), packetIds);
   generateFiles(tree, path.join(__dirname, "files"), path.join(libRoot, "src/lib"), {});
 
   await formatFiles(tree);

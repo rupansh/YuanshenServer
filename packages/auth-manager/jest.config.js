@@ -1,5 +1,5 @@
 module.exports = {
-    displayName: "ysproto",
+    displayName: "auth-manager",
     preset: "../../jest.preset.js",
     globals: {
         "ts-jest": {
@@ -7,8 +7,8 @@ module.exports = {
         },
     },
     transform: {
-        "^.+\\.[tj]sx?$": "ts-jest",
+        "^.+\\.[tj]s$": "ts-jest",
     },
-    moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-    coverageDirectory: "../../coverage/packages/ysproto",
+    moduleFileExtensions: ["ts", "js", "html"],
+    coverageDirectory: "../../coverage/packages/auth-manager",
 };

@@ -1,1 +1,1 @@
-export * from './lib/ysproto';
+export * from "./lib/ysproto";

@@ -1,7 +1,7 @@
-import { ysproto } from './ysproto';
+import { ysproto } from "./ysproto";
 
-describe('ysproto', () => {
-  it('should work', () => {
-    expect(ysproto()).toEqual('ysproto');
-  });
+describe("ysproto", () => {
+    it("should work", () => {
+        expect(ysproto()).toEqual("ysproto");
+    });
 });
