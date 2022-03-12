@@ -1,3 +1,4 @@
+import { MessageType } from "@protobuf-ts/runtime";
 import * as protos from "@ysparadox/ysproto";
 
 type PacketIdValueG<T extends PacketId> = (typeof protos.packetIds)[T];
@@ -7,7 +8,8 @@ type PacketIdValue = PacketIdValueG<PacketId>;
 
 type ProtoKeys = keyof typeof protos;
 export type SupportedProtoName = ProtoKeys & PacketIdValue;
-export type DeriveProto<T extends SupportedProtoName> = typeof protos[T];
+type ExMessageType<T extends MessageType<object>> = T extends MessageType<infer V> ? V : never;
+export type DeriveProto<T extends SupportedProtoName> = ExMessageType<(typeof protos[T])>;
 export type SupportedProto = DeriveProto<SupportedProtoName>;
 
 type RspCmdIds = SupportedProto & {
