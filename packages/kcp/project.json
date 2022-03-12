@@ -1,0 +1,33 @@
+{
+    "root": "packages/kcp",
+    "sourceRoot": "packages/kcp/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/workspace:run-script",
+            "outputs": ["packages/kcp/dist"],
+            "options": {
+                "script": "napi:build:debug"
+            },
+            "configurations": {
+                "production": {
+                    "script": "napi:build"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "cargo fmt"
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/kcp"],
+            "options": {
+                "jestConfig": "packages/kcp/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

@@ -1,0 +1,32 @@
+{
+    "root": "packages/ys-keys",
+    "sourceRoot": "packages/ys-keys/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/ys-keys",
+                "main": "packages/ys-keys/src/index.ts",
+                "tsConfig": "packages/ys-keys/tsconfig.lib.json",
+                "assets": ["packages/ys-keys/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/ys-keys/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/ys-keys"],
+            "options": {
+                "jestConfig": "packages/ys-keys/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

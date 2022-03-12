@@ -5,6 +5,7 @@ specifiers:
   '@marblejs/http': ^4.0.3
   '@marblejs/middleware-body': ^4.0.3
   '@marblejs/middleware-io': ^4.0.3
+  '@napi-rs/cli': ^2.4.5
   '@nrwl/cli': 13.8.5
   '@nrwl/devkit': 13.8.5
   '@nrwl/eslint-plugin-nx': 13.8.5
@@ -27,6 +28,8 @@ specifiers:
   io-ts: ^2.2.16
   jest: 27.2.3
   long: ^5.2.0
+  monocle-ts: ^2.3.12
+  newtype-ts: ^0.3.5
   prettier: ^2.5.1
   rxjs: ^7.5.5
   ts-jest: 27.0.5
@@ -42,10 +45,13 @@ dependencies:
   fp-ts: 2.11.8
   io-ts: 2.2.16_fp-ts@2.11.8
   long: 5.2.0
+  monocle-ts: 2.3.12_fp-ts@2.11.8
+  newtype-ts: 0.3.5_fp-ts@2.11.8+monocle-ts@2.3.12
   rxjs: 7.5.5
   tslib: 2.3.1
 
 devDependencies:
+  '@napi-rs/cli': 2.4.5
   '@nrwl/cli': 13.8.5
   '@nrwl/devkit': 13.8.5
   '@nrwl/eslint-plugin-nx': 13.8.5_6f7ffd8ae165f7f1947131862b9ce494
@@ -776,6 +782,12 @@ packages:
       io-ts: 2.2.16_fp-ts@2.11.8
       rxjs: 7.5.5
     dev: false
+
+  /@napi-rs/cli/2.4.5:
+    resolution: {integrity: sha512-CLa3PSHh4Y760OXkHidzfHavVtfbQyfMhj3sWpta3SZjbWMk0tbdPhRez9y8KVApVVWjBxz5agEeFMfxxr+KTg==}
+    engines: {node: '>= 10'}
+    hasBin: true
+    dev: true
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -4087,6 +4099,14 @@ packages:
     hasBin: true
     dev: true
 
+  /monocle-ts/2.3.12_fp-ts@2.11.8:
+    resolution: {integrity: sha512-mf753m69aRNApcL2KCKfLRwfWbraeqQfRRgm3a8D+5lvkhCcMtVp8/vnM04Cmhsd6YXJeInMeQFFETrd7jWYww==}
+    peerDependencies:
+      fp-ts: ^2.5.0
+    dependencies:
+      fp-ts: 2.11.8
+    dev: false
+
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
@@ -4098,6 +4118,16 @@ packages:
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
+
+  /newtype-ts/0.3.5_fp-ts@2.11.8+monocle-ts@2.3.12:
+    resolution: {integrity: sha512-v83UEQMlVR75yf1OUdoSFssjitxzjZlqBAjiGQ4WJaML8Jdc68LJ+BaSAXUmKY4bNzp7hygkKLYTsDi14PxI2g==}
+    peerDependencies:
+      fp-ts: ^2.0.0
+      monocle-ts: ^2.0.0
+    dependencies:
+      fp-ts: 2.11.8
+      monocle-ts: 2.3.12_fp-ts@2.11.8
+    dev: false
 
   /node-addon-api/3.2.1:
     resolution: {integrity: sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==}

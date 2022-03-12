@@ -1,0 +1,32 @@
+{
+    "root": "packages/proto-utils",
+    "sourceRoot": "packages/proto-utils/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/proto-utils",
+                "main": "packages/proto-utils/src/index.ts",
+                "tsConfig": "packages/proto-utils/tsconfig.lib.json",
+                "assets": ["packages/proto-utils/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/proto-utils/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/proto-utils"],
+            "options": {
+                "jestConfig": "packages/proto-utils/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

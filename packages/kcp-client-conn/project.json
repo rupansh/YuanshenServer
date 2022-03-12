@@ -1,0 +1,32 @@
+{
+    "root": "packages/kcp-client-conn",
+    "sourceRoot": "packages/kcp-client-conn/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/kcp-client-conn",
+                "main": "packages/kcp-client-conn/src/index.ts",
+                "tsConfig": "packages/kcp-client-conn/tsconfig.lib.json",
+                "assets": ["packages/kcp-client-conn/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/kcp-client-conn/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/kcp-client-conn"],
+            "options": {
+                "jestConfig": "packages/kcp-client-conn/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}
