@@ -24,6 +24,4 @@ export type SupportedPacketId = {
 export type PacketFromProto<T extends SupportedProtoName> = typeof protos.reversePacketIds[T] & SupportedPacketId;
 export type ProtoNameFromPacket<T extends SupportedPacketId> = PacketIdValueG<T> & SupportedProtoName;
 
-// Static assert that ProtoNameFromPacket<PacketFromProto<T>> is the same as T
-type IsTrue<T extends true> = T
-export type Identity<T extends SupportedProtoName> = IsTrue<T extends ProtoNameFromPacket<PacketFromProto<T>> ? true : false>;
+export type Identity<T extends SupportedProtoName> = T extends ProtoNameFromPacket<PacketFromProto<T>> ? ProtoNameFromPacket<PacketFromProto<T>> : never;
