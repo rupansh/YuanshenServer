@@ -215,7 +215,7 @@ export function mockGameDb() {
             return some(ret);
         },
         async getPlayerTeams(uid: number) {
-            return some(Array.from({ length: 5 }, function(_, i): TeamInfo {
+            return some(Array.from({ length: 4 }, function(_, i): TeamInfo {
                 return {
                     uid,
                     id: i+1,
@@ -224,7 +224,7 @@ export function mockGameDb() {
             }));
         },
         async getPlayerTeamsAvatars(uid: number) {
-            return some(Array.from<unknown, AvatarTeamInfo>({ length: 5 }, (_, i) => ({
+            return some(Array.from<unknown, AvatarTeamInfo>({ length: 4 }, (_, i) => ({
                 uid,
                 teamId: i+1,
                 guid: FAKE_AVATAR_GUID
