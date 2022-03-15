@@ -78,6 +78,14 @@ export const PROTOS = [
   "GetPlayerFriendListReq",
   "GetPlayerFriendListRsp",
 
+  "ProtEntityType",
+  "Weapon",
+  "Equip",
+  "Item",
+  "PropValue",
+  "FightPropPair",
+  "PropPair",
+  "AvatarTeam",
 
   "OpenStateType",
   "GrowCurveType",

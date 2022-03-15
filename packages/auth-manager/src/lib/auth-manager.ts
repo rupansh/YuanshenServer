@@ -3,7 +3,7 @@ import { GetPlayerTokenRsp } from "@ysparadox/ysproto"
 import { fromNullable } from "fp-ts/lib/Option";
 
 const PLAYER_TOKEN_SEED = 0x123456789ABCDEF0n; // TODO use proper value
-const SPOOF_UID = 1337; // TODO
+export const SPOOF_UID = 1337; // TODO
 
 export type AuthManager = ReturnType<typeof authManager>;
 

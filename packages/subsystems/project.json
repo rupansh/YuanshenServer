@@ -1,0 +1,32 @@
+{
+    "root": "packages/subsystems",
+    "sourceRoot": "packages/subsystems/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/subsystems",
+                "main": "packages/subsystems/src/index.ts",
+                "tsConfig": "packages/subsystems/tsconfig.lib.json",
+                "assets": ["packages/subsystems/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/subsystems/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/subsystems"],
+            "options": {
+                "jestConfig": "packages/subsystems/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

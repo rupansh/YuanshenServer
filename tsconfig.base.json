@@ -31,6 +31,7 @@
             "@ysparadox/dispatch-query": [
                 "packages/dispatch-query/src/index.ts"
             ],
+            "@ysparadox/game-db": ["packages/game-db/src/index.ts"],
             "@ysparadox/kcp": [
                 "packages/kcp/dist/index.d.ts",
                 "packages/kcp/dist/index.node"
@@ -43,6 +44,7 @@
                 "packages/packet-handler/src/index.ts"
             ],
             "@ysparadox/proto-utils": ["packages/proto-utils/src/index.ts"],
+            "@ysparadox/subsystems": ["packages/subsystems/src/index.ts"],
             "@ysparadox/ys-keys": ["packages/ys-keys/src/index.ts"],
             "@ysparadox/yscrypt": ["packages/yscrypt/src/index.ts"],
             "@ysparadox/ysproto": ["packages/ysproto/src/index.ts"]
