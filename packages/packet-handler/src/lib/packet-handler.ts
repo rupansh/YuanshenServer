@@ -13,7 +13,7 @@ type PacketIdHandlers = {
 
 export type PacketHandlerHelper = ReturnType<typeof packetHandlerHelper>;
 
-export type PacketHandlerRegistry = Pick<PacketHandlerHelper, "register">;
+export type PacketHandlerRegistry = Pick<PacketHandlerHelper, "register" | "notifyPacket">;
 export type PacketHandlerRepo = Pick<PacketHandlerHelper, "handlePacket">;
 export type PacketSender = (userId: number, rspId: number, metadata: Buffer, rsp: Buffer) => void;
 
@@ -45,6 +45,13 @@ export function packetHandlerHelper(sender: PacketSender) {
             const rspRaw = proto[`${res[1]}`].toBinary(rsp as never);
 
             sender(userId, rspId, metadata, Buffer.from(rspRaw));
+        },
+        notifyPacket<P extends SupportedProtoName>(protoN: P, userId: number, metadata: proto.PacketHead, data: Partial<DeriveProto<P>>) {
+            const reqProto = proto[protoN];
+            const packetId = parseInt(proto.reversePacketIds[protoN]);
+            const fullProto = reqProto.create(data) as DeriveProto<P>;
+            const protoRaw = Buffer.from(reqProto.toBinary(fullProto as never));
+            sender(userId, packetId, Buffer.from(PacketHead.toBinary(metadata)), protoRaw);
         } 
     }
 }

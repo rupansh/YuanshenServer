@@ -87,7 +87,7 @@ export function mockGameDb() {
                 10068: 3,
                 100553: 3,
                 10067: 3
-            });
+            } as Record<number, number>);
         },
         async getAvatarFightProps(_: Long) {
             const ret: Partial<Record<FightPropType, number>> = {

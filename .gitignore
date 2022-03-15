@@ -40,3 +40,6 @@ Thumbs.db
 
 # Protobuf
 packages/ysproto/src/lib/generated
+
+# Json
+packages/ysjson/src/lib/generated

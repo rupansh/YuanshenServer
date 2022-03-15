@@ -86,6 +86,10 @@ export const PROTOS = [
   "FightPropPair",
   "PropPair",
   "AvatarTeam",
+  "StoreType",
+  "AvatarInfo",
+  "AvatarFetterInfo",
+  "EnterType",
 
   "OpenStateType",
   "GrowCurveType",

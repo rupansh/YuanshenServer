@@ -17,30 +17,50 @@ type PacketNameHandlers = {
 }
 
 type RegisterMsg = {
+    sub: "register",
     req: SupportedProtoName,
     res: SupportedRsp
 };
 
+type NotifyMsg = {
+    sub: "notify",
+    name: SupportedProtoName,
+    userId: number,
+    metadata: proto.PacketHead,
+    proto: DeriveProto<NotifyMsg["name"]>
+}
+
 export function wrapGameWorker(
-    registerListener: MessagePort,
+    registryListener: MessagePort,
     rpcClient: ClientProxy<WorkerPacketHandler>,
     inner: PacketHandlerHelper
 ) {
-    registerListener.on("message", (msg: RegisterMsg) => {
-        inner.register(
-            msg.req,
-            msg.res,
-            (userId, metadata, proto) => rpcClient.handlePacket(
-                msg.req,
-                userId,
-                metadata,
-                proto
-            )
-        );
+    registryListener.on("message", (msg: RegisterMsg | NotifyMsg) => {
+        switch (msg.sub) {
+            case "register":
+                inner.register(
+                    msg.req,
+                    msg.res,
+                    (userId, metadata, proto) => rpcClient.handlePacket(
+                        msg.req,
+                        userId,
+                        metadata,
+                        proto
+                    )
+                );
+                break;
+            case "notify":
+                inner.notifyPacket(
+                    msg.name,
+                    msg.userId,
+                    msg.metadata,
+                    msg.proto
+                )
+        }
     });
 }
 
-export function workerPacketRegistry(registerSender: MessagePort): PacketHandlerRegistry {
+export function workerPacketRegistry(registrySender: MessagePort): PacketHandlerRegistry {
     const handlers: PacketNameHandlers = new Map();
 
     createServer<WorkerPacketHandler>({
@@ -57,8 +77,12 @@ export function workerPacketRegistry(registerSender: MessagePort): PacketHandler
     return {
         register(req, res, handler) {
             handlers.set(req, handler);
-            const msg: RegisterMsg = { req, res };
-            registerSender.postMessage(msg)
+            const msg: RegisterMsg = { sub: "register", req, res };
+            registrySender.postMessage(msg)
+        },
+        notifyPacket(name, userId, metadata, data) {
+            const msg: NotifyMsg = { sub: "notify", name, userId, metadata, proto: data };
+            registrySender.postMessage(msg);
         }
     }
 }
