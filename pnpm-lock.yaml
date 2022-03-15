@@ -31,6 +31,7 @@ specifiers:
   io-ts: ^2.2.16
   jest: 27.2.3
   long: ^5.2.0
+  moment: ^2.29.1
   monocle-ts: ^2.3.12
   newtype-ts: ^0.3.5
   prettier: ^2.5.1
@@ -51,6 +52,7 @@ dependencies:
   fp-ts: 2.11.8
   io-ts: 2.2.16_fp-ts@2.11.8
   long: 5.2.0
+  moment: 2.29.1
   monocle-ts: 2.3.12_fp-ts@2.11.8
   newtype-ts: 0.3.5_fp-ts@2.11.8+monocle-ts@2.3.12
   rxjs: 7.5.5
@@ -4256,6 +4258,10 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dev: true
+
+  /moment/2.29.1:
+    resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
+    dev: false
 
   /monocle-ts/2.3.12_fp-ts@2.11.8:
     resolution: {integrity: sha512-mf753m69aRNApcL2KCKfLRwfWbraeqQfRRgm3a8D+5lvkhCcMtVp8/vnM04Cmhsd6YXJeInMeQFFETrd7jWYww==}

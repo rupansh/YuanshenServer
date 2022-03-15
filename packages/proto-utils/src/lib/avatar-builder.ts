@@ -2,7 +2,7 @@ import { AvatarInfo, GameDb, IdManager } from "@ysparadox/game-db";
 import * as proto from "@ysparadox/ysproto";
 import { AvatarFetterInfo, PropType } from "@ysparadox/ysproto";
 import { isNone, Option } from "fp-ts/lib/Option";
-import * as AvatarSkillDepot from "../../../../assets/json/AvatarSkillDepotExcelConfigData.json";
+import * as AvatarSkillDepot from "assets/json/AvatarSkillDepotExcelConfigData.json";
 import { propTypeRemap } from "./remapper";
 
 const unwrap = <T>(o: Option<T>) => {

@@ -90,6 +90,12 @@ export const PROTOS = [
   "AvatarInfo",
   "AvatarFetterInfo",
   "EnterType",
+  "SocialShowAvatarInfo",
+  "SocialDetail",
+  "ProfilePicture",
+  "Birthday",
+  "FriendOnlineState",
+  "ShopGoods",
 
   "OpenStateType",
   "GrowCurveType",
