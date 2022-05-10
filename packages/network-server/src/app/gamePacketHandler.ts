@@ -18,16 +18,23 @@ export function gamePacketHandler(am: AuthManager, packetHandler: PacketHandlerR
         if (isNone(data)) return console.error("malformed game packet, ignoring");
 
         const metadata = DataPacket.metadata(data.value);
-        const head = PacketHead.fromBinary(metadata);
+
+        try {
+            PacketHead.fromBinary(metadata);
+        } catch (e) {
+            console.log("malformed packet header", e, "header:", metadata);
+        }
+
         const dataData = DataPacket.data(data.value);
-        if (head.packetId.toString() == PLAYER_TOKEN_REQ_ID) return packetHandler.handlePacket(PLAYER_TOKEN_REQ_ID, conv, metadata, dataData)
+        const packetId = DataPacket.packetId(data.value);
+        if (packetId.toString() == PLAYER_TOKEN_REQ_ID) return packetHandler.handlePacket(PLAYER_TOKEN_REQ_ID, conv, metadata, dataData)
 
         const userId = am.resolveUid(conv);
         if (isNone(userId)) return console.error("gamePacketHandler: unknown conv", conv, "ignoring");
 
-        if (head.packetId.toString() == UNION_CMD_NOTI_ID) return await unionPacketHandler(userId.value, metadata, dataData);
+        if (packetId.toString() == UNION_CMD_NOTI_ID) return await unionPacketHandler(userId.value, metadata, dataData);
 
-        await packetHandler.handlePacket(head.packetId.toString() as never, userId.value, metadata, dataData);
+        await packetHandler.handlePacket(packetId.toString() as never, userId.value, metadata, dataData);
     }
 
     return {

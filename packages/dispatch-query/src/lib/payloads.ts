@@ -3,7 +3,7 @@ import { DispatchConfig } from "./dispatch-query";
 
 
 export const defaultDispatchConfig: DispatchConfig = {
-    dispatchHost: "localhost",
+    dispatchHost: "127.0.0.1",
     gateServerIp: "127.0.0.1",
     dispatchPort: 80,
     gateServerPort: 4242
@@ -32,7 +32,7 @@ const clientCustomConfigJson = {
     "downloadMode": "0"
 };
 
-export const clientCustomConfig = Buffer.from(JSON.stringify(clientCustomConfigJson));
+export const clientCustomConfig = JSON.stringify(clientCustomConfigJson);
 
 export function regionCustomConfig(conf: DispatchConfig) {
     const regionCustomConfigJson = {

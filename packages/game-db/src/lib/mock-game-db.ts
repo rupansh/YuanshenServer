@@ -4,14 +4,14 @@ import { PropType, FightPropType, OPEN_STATE_TYPE } from "@ysparadox/ysproto";
 import { none, Option, some } from "fp-ts/lib/Option";
 import * as IdManager from "./id-manager";
 import { SPOOF_UID } from "@ysparadox/auth-manager";
-import Long = require("long");
+import Long from "long";
 import { AvatarInfo, SceneInfo, TeamInfo, AvatarTeamInfo, TeamSelectionInfo } from "./model";
 
 
 const FAKE_NAME = "YSParadoxEnjoyer";
-const FAKE_SIG = "YSParadox";
-const FAKE_NAMECARD = 213374;
-export const FAKE_AVATAR_ID = 10000007;
+const FAKE_SIG = "YSParadox Bruh Moment";
+const FAKE_NAMECARD = 1337;
+export const FAKE_AVATAR_ID = 1337;
 const FAKE_PLAYER_LEVEL = 56;
 const FAKE_WORLD_LEVEL = 8;
 export const FAKE_WEAPON_ID = 2;
@@ -43,9 +43,9 @@ export function mockGameDb() {
                 uid,
                 nickName: FAKE_NAME,
                 signature: FAKE_SIG,
-                birthday: new Date(),
+                birthday: new Date(0),
                 namecardId: FAKE_NAMECARD,
-                finishAchievementNum: 42,
+                finishAchievementNum: 1,
                 towerFloorIndex: 1,
                 towerLevelIndex: 1,
                 avatarId: FAKE_AVATAR_ID
@@ -148,12 +148,14 @@ export function mockGameDb() {
     
                 [OPEN_STATE_TYPE.OPEN_STATE_LIMIT_REGION_FRESHMEAT]: 1,
                 [OPEN_STATE_TYPE.OPEN_STATE_LIMIT_REGION_GLOBAL]: 1,
-                [OPEN_STATE_TYPE.OPEN_STATE_MULTIPLAYER]: 0,
+                [OPEN_STATE_TYPE.OPEN_STATE_MULTIPLAYER]: 1,
     
                 [OPEN_STATE_TYPE.OPEN_STATE_SHOP_TYPE_PAIMON]: 1, // 900
                 [OPEN_STATE_TYPE.OPEN_STATE_SHOP_TYPE_CITY]: 1, // 901
                 [OPEN_STATE_TYPE.OPEN_STATE_SHOP_TYPE_BLACKSMITH]: 1, // 902
                 [OPEN_STATE_TYPE.OPEN_STATE_SHOP_TYPE_GROCERY]: 1, // 903
+                [OPEN_STATE_TYPE.OPEN_STATE_SHOP_TYPE_FOOD]: 1,
+                [OPEN_STATE_TYPE.OPEN_STATE_SHOP_TYPE_SEA_LAMP]: 1,
                 [OPEN_STATE_TYPE.OPEN_STATE_SHOP_TYPE_LIYUE_GROCERY]: 1, // 903
                 [OPEN_STATE_TYPE.OPEN_STATE_SHOP_TYPE_LIYUE_RESTAURANT]: 1, // 903
     
@@ -175,7 +177,7 @@ export function mockGameDb() {
                 detail: { oneofKind: "weapon", weapon }
             });
             const item = proto.Item.create({
-                itemId: 111406,
+                itemId: 11406,
                 guid: BigInt(IdManager.getGuidByUidId(uid, FAKE_WEAPON_ID).toString()),
                 detail: { oneofKind: "equip", equip }
             });

@@ -9,7 +9,8 @@
             "options": {
                 "outputPath": "dist/packages/network-server",
                 "main": "packages/network-server/src/main.ts",
-                "tsConfig": "packages/network-server/tsconfig.app.json"
+                "tsConfig": "packages/network-server/tsconfig.app.json",
+                "webpackConfig": "packages/network-server/custom-webpack.js"   
             },
             "configurations": {
                 "production": {

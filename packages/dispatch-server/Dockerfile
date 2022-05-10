@@ -1,7 +1,7 @@
 FROM node:lts-alpine 
 
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh curl
+    apk add --no-cache bash git openssh curl g++ make python3
 
 RUN curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@6
 

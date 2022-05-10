@@ -1,23 +1,25 @@
-import { Kcp, KcpSender } from "@ysparadox/kcp";
 import { ysGenKey, ysXor } from "@ysparadox/yscrypt";
 import * as dgram from "dgram";
+import { KCP } from "@ysparadox/kcp";
 import { none, Option,  isNone, some } from "fp-ts/lib/Option";
-import Long = require("long");
+import Long from "long";
 
-export type KcpContext = Parameters<Kcp["switchContext"]>[0];
 export type KcpClientConn = ReturnType<typeof kcpClientConn>
 
-export function kcpUdpSender(socket: dgram.Socket): KcpSender {
-    return KcpSender.new((data, size, ctx) => socket.send(data, 0, size, ctx.port, ctx.address))
-}
+export type KcpContext = { address: string, port: number };
 
-const BASE_BUF_SZ = 0x20000;
+export function kcpClientConn(socket: dgram.Socket, ctx: KcpContext, conv: number, token: number, masterKey: Buffer) {
+    const senderFunc = (data: Buffer, size: number, ctx: { address: string, port: number }) => {
+        socket.send(data, 0, size, ctx.port, ctx.address);
+    }
 
-export function kcpClientConn(sender: KcpSender, ctx: KcpContext, conv: number, token: number, masterKey: Buffer) {
     let curCtx = ctx;
-    const kcp = new Kcp(conv, token, sender, curCtx);
+    let kcp = new KCP(conv, token, curCtx);
+    kcp.output(senderFunc)
 
-    const curKey = masterKey;
+    const curKey = Buffer.alloc(masterKey.length);
+    masterKey.copy(curKey);
+
     let pendingSeed: Option<Long> = none;
 
     const startTime = Date.now()
@@ -29,28 +31,24 @@ export function kcpClientConn(sender: KcpSender, ctx: KcpContext, conv: number, 
     }
 
     function elapsedMs() {
-        return startTime - Date.now();
+        return Date.now() - startTime;
     }
 
-    function* processUdpPacket(packet: Buffer): Iterable<Buffer> {
+    function* processUdpPacket(packet: Buffer) {
         processPendingSeed();
 
         kcp.input(packet);
         kcp.update(elapsedMs());
         kcp.flush();
         
-        let err = false;
-        while (!err) {
-            const buf = Buffer.alloc(BASE_BUF_SZ);
-            try {
-                const size = kcp.recv(buf);
-                const curP = buf.slice(0, size);
-                ysXor(curP, curKey);
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+            const buf = kcp.recv()
+            if (!buf || buf.length == 0) break;
 
-                yield curP;
-            } catch {
-                err = true;
-            }
+            ysXor(curKey, buf);
+
+            yield buf
         }
         kcp.update(elapsedMs());
     }
@@ -58,7 +56,9 @@ export function kcpClientConn(sender: KcpSender, ctx: KcpContext, conv: number, 
     return {
         updateSource(context: KcpContext) {
             if (curCtx.address == context.address && curCtx.port == context.port) return;
-            kcp.switchContext(context);
+            kcp.release();
+            kcp = new KCP(conv, token, context);
+            kcp.output(senderFunc);
             curCtx = context;
         },
         processUdpPacket,
@@ -67,11 +67,15 @@ export function kcpClientConn(sender: KcpSender, ctx: KcpContext, conv: number, 
         },
         /**
          * 
-         * @param data Buffer to be sent, invalidated after its sent.
+         * @param data Buffer to be sent
          */
         sendUdpPacket(data: Buffer) {
-            ysXor(data, curKey);
-            kcp.send(data);
+            const dataCp = Buffer.alloc(data.length);
+            data.copy(dataCp);
+
+            ysXor(curKey, dataCp)
+            console.log("sending data", dataCp);
+            kcp.send(dataCp);
             kcp.flush();
             kcp.update(elapsedMs());
         }

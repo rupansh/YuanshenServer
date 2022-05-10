@@ -1,5 +1,5 @@
 import { authManager } from "@ysparadox/auth-manager";
-import { kcpClientConn, KcpContext, kcpUdpSender } from "@ysparadox/kcp-client-conn";
+import { kcpClientConn, KcpContext } from "@ysparadox/kcp-client-conn";
 import { loadYsKeys } from "@ysparadox/ys-keys";
 import * as dgram from "dgram";
 import { Channel } from "@sidewinder/channel";
@@ -16,7 +16,6 @@ function packetRelayChannel(): Channel<Parameters<PacketSender>> {
 
 export async function createDeps() {
     const socket = dgram.createSocket("udp4");
-    const sender = kcpUdpSender(socket);
     const keys = await loadYsKeys();
     const relayChannel = packetRelayChannel();
     const packetHandler = packetHandlerHelper((...args) => relayChannel.send(args));
@@ -25,8 +24,8 @@ export async function createDeps() {
     return {
         socket,
         kcpClientFactory: (ctx: KcpContext, conv: number, token: number) =>
-            kcpClientConn(sender, ctx, conv, token, keys.xorKey),
-        authMan: authManager(packetHandler),
+            kcpClientConn(socket, ctx, conv, token, keys.xorKey),
+        authMan: am,
         relayChannel,
         packetHandler,
         gamePkHandler: gamePacketHandler(am, packetHandler)

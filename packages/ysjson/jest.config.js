@@ -1,5 +1,5 @@
 module.exports = {
-    displayName: "kcp",
+    displayName: "ysjson",
     preset: "../../jest.preset.js",
     globals: {
         "ts-jest": {
@@ -7,8 +7,8 @@ module.exports = {
         },
     },
     transform: {
-        "^.+\\.[tj]s$": "ts-jest",
+        "^.+\\.[tj]sx?$": "ts-jest",
     },
-    moduleFileExtensions: ["ts", "js", "html"],
-    coverageDirectory: "../../coverage/packages/kcp",
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+    coverageDirectory: "../../coverage/packages/ysjson",
 };

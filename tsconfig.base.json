@@ -10,7 +10,7 @@
         "importHelpers": true,
         "resolveJsonModule": true,
         "target": "es2020",
-        "module": "esnext",
+        "esModuleInterop": true,
         "lib": ["es2020"],
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
@@ -32,10 +32,6 @@
                 "packages/dispatch-query/src/index.ts"
             ],
             "@ysparadox/game-db": ["packages/game-db/src/index.ts"],
-            "@ysparadox/kcp": [
-                "packages/kcp/dist/index.d.ts",
-                "packages/kcp/dist/index.node"
-            ],
             "@ysparadox/kcp-client-conn": [
                 "packages/kcp-client-conn/src/index.ts"
             ],
@@ -47,6 +43,7 @@
             "@ysparadox/subsystems": ["packages/subsystems/src/index.ts"],
             "@ysparadox/ys-keys": ["packages/ys-keys/src/index.ts"],
             "@ysparadox/yscrypt": ["packages/yscrypt/src/index.ts"],
+            "@ysparadox/ysjson": ["packages/ysjson/src/index.ts"],
             "@ysparadox/ysproto": ["packages/ysproto/src/index.ts"]
         }
     },

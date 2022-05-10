@@ -4,9 +4,8 @@ import { getOrElse, isNone, map } from "fp-ts/lib/Option";
 import { pipe } from "fp-ts/lib/function";
 import { Deps } from "../deps";
 import { KcpClientConn } from "@ysparadox/kcp-client-conn";
-import { getConv } from "@ysparadox/kcp";
 import { GetPlayerTokenRsp } from "@ysparadox/ysproto";
-import Long = require("long");
+import Long from "long";
 import { PLAYER_TOKEN_RSP_ID } from "./consts";
 
 // TODO: Add Game Server
@@ -14,20 +13,24 @@ export function udpHandler(deps: Deps, host: string, port: number) {
     const socket = deps.socket;
     const clients: { [conv: number]: KcpClientConn } = {};
 
+    const addClient = (rinfo: dgram.RemoteInfo, conv: number, token: number) => {
+        const client = deps.kcpClientFactory(rinfo, conv, token);
+        clients[conv] = client;
+    }
+
     const handshakeHandler = (rinfo: dgram.RemoteInfo) => {
         // TODO: assign this properly
         const conv = 0x96969696;
         const token = 0x42424242;
 
-        const client = deps.kcpClientFactory(rinfo, conv, token);
-        clients[conv] = client;
+        addClient(rinfo, conv, token);
 
         const msg = HandshakePacket.newConv(conv, token);
         socket.send(HandshakePacket.toBytes(msg), rinfo.port, rinfo.address);
     }
 
     const packetHandler = (pkt: Buffer, rinfo: dgram.RemoteInfo) => {
-        const conv = getConv(pkt);
+        const conv = pkt.readUInt32LE(0);
         const client = clients[conv];
         if (!client) return console.error("unknown client! conv:", conv);
 
@@ -37,7 +40,7 @@ export function udpHandler(deps: Deps, host: string, port: number) {
         }
     }
 
-    const messageHandler = (msg: Buffer, rinfo: dgram.RemoteInfo) => {
+    const messageHandler = async (msg: Buffer, rinfo: dgram.RemoteInfo) => {
         const hs = pipe(
             HandshakePacket.newFromRaw(msg),
             map(HandshakePacket.isConnect),

@@ -1,5 +1,5 @@
 import { ProtEntityType } from "@ysparadox/ysproto";
-import Long = require("long");
+import Long from "long";
 
 const AVATAR_ID_OFFSET = 10000000;
 const DEPOT_ID_OFFSET = 1;

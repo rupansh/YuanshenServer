@@ -1,5 +1,5 @@
-import assert = require('assert');
-import Long = require('long');
+import assert from "assert";
+import Long from 'long';
 import { mt64Rand } from './mt64';
 
 describe('mt64', () => {

@@ -10,7 +10,7 @@ export function registerShopSubSys(reg: PacketHandlerRegistry, db: GameDb) {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function getShopRefreshTime(_: number, __: number) {
-        return Date.now() + 86400;
+        return Math.floor(Date.now()/1000) + 86400;
     }
 
     // Stub

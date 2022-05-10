@@ -3,3 +3,6 @@ dist
 tmp
 node_modules
 assets
+**/target
+**/rel
+.git

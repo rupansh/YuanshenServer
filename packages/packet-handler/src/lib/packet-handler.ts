@@ -32,6 +32,7 @@ export function packetHandlerHelper(sender: PacketSender) {
 
     function protoDecoder<P extends SupportedPacketId, T>(protoId: P, data: Buffer): DeriveProto<ProtoNameFromPacket<P> & T> {
         const protoName = proto.packetIds[protoId];
+        console.log("proto name is", protoName);
         const reqProto = proto[protoName];
 
         return reqProto.fromBinary(data) as DeriveProto<ProtoNameFromPacket<P> & T>;
@@ -66,6 +67,12 @@ export function packetHandlerHelper(sender: PacketSender) {
             const rspId = proto[`${res[1]}_CmdId`].CMD_ID;
             const rspRaw = proto[`${res[1]}`].toBinary(rsp as never);
 
+            console.log(
+                "proto:",
+                res[1],
+                "sending packet",
+            )
+
             sender(userId, rspId, metadata, Buffer.from(rspRaw));
         },
         notifyPacket<P extends SupportedNotify>(protoN: P, userId: number, metadata: proto.PacketHead, data: Partial<DeriveProto<P>>) {
@@ -73,6 +80,7 @@ export function packetHandlerHelper(sender: PacketSender) {
             const packetId = parseInt(proto.reversePacketIds[protoN]);
             const fullProto = reqProto.create(data) as DeriveProto<P>;
             const protoRaw = Buffer.from(reqProto.toBinary(fullProto as never));
+            console.log("Notifying", protoN);
             sender(userId, packetId, Buffer.from(PacketHead.toBinary(metadata)), protoRaw);
         } 
     }

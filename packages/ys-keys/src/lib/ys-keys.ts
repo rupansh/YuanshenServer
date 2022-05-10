@@ -1,6 +1,6 @@
 import { DispatchKeys } from "@ysparadox/dispatch-query";
 import * as fs from "fs";
-import path = require("path");
+import path from "path";
 
 export const QUERY_KEYS_LOC = "assets/keys";
 

@@ -1,0 +1,10 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "cli": "nx",
+    "$id": "ysjson-gen",
+    "type": "object",
+    "properties": {
+
+    },
+    "required": []
+}

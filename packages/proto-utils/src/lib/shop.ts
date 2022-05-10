@@ -1,5 +1,4 @@
-import * as ShopGoods from "assets/json/ShopGoodsExcelConfigData.json";
-import * as ShopRotate from "assets/json/ShopRotateExcelConfigData.json";
+import { ShopGoods, ShopRotate } from "@ysparadox/ysjson";
 
 type KToNumber<T, K extends keyof T> = T[K] extends number ? T & Record<K, number> : never
 
@@ -17,9 +16,9 @@ const convToMap = <T, K extends keyof T>(k: K, vs: KToNumber<T, K>[]) => {
 }
 
 export function loadShopGoodsMap() {
-    return convToMap("ShopType", ShopGoods);
+    return convToMap("ShopType", Object.values(ShopGoods));
 }
 
 export function loadShopRotateMap() {
-   return convToMap("RotateId", ShopRotate);
+   return convToMap("RotateId", Object.values(ShopRotate));
 }

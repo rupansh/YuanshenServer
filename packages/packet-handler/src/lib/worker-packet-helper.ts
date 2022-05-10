@@ -1,9 +1,8 @@
-import { MessagePort, parentPort } from "worker_threads";
-import { NotifyHandler, PacketHandler, PacketHandlerHelper, PacketHandlerRegistry } from "./packet-handler";
+import { MessagePort, parentPort, Worker } from "worker_threads";
+import { NotifyHandler, PacketHandler, PacketHandlerRegistry } from "./packet-handler";
 import { DeriveProto, SupportedNotify, SupportedReq, SupportedRsp } from "./type-utils";
 import * as proto from "@ysparadox/ysproto";
-import { ClientProxy } from "delight-rpc";
-import { createServer } from "@delight-rpc/worker-threads";
+import { createClient, createServer } from "@delight-rpc/worker-threads";
 
 type WorkerPacketHandler = {
     handlePacket: <Rq extends SupportedReq>(
@@ -45,9 +44,10 @@ type NotifyMsg = {
 
 export function wrapGameWorker(
     registryListener: MessagePort,
-    rpcClient: ClientProxy<WorkerPacketHandler>,
-    inner: PacketHandlerHelper
+    gameWorker: Worker,
+    inner: PacketHandlerRegistry
 ) {
+    const [rpcClient] = createClient<WorkerPacketHandler>(gameWorker);
     registryListener.on("message", (msg: RegisterMsg | NotifyMsg | RegisterNotifyMsg) => {
         switch (msg.sub) {
             case "register":

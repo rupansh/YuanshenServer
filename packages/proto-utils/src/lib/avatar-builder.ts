@@ -1,8 +1,8 @@
 import { AvatarInfo, GameDb, IdManager } from "@ysparadox/game-db";
 import * as proto from "@ysparadox/ysproto";
 import { AvatarFetterInfo, PropType } from "@ysparadox/ysproto";
+import { AvatarSkillDepot } from "@ysparadox/ysjson";
 import { isNone, Option } from "fp-ts/lib/Option";
-import * as AvatarSkillDepot from "assets/json/AvatarSkillDepotExcelConfigData.json";
 import { propTypeRemap } from "./remapper";
 
 const unwrap = <T>(o: Option<T>) => {
@@ -10,14 +10,21 @@ const unwrap = <T>(o: Option<T>) => {
     return o.value;
 }
 
+const AvatarSkillDepotKeyed = Object.fromEntries(Object.values(AvatarSkillDepot).map(v => [v.Id, v]))
+
 export async function buildAvatarInfo(db: GameDb, a: AvatarInfo): Promise<proto.AvatarInfo> {
     const depo = IdManager.getDepotIdByCharId(a.characterId);
-    const asd = AvatarSkillDepot[depo];
+    const asd = AvatarSkillDepotKeyed[depo];
     const asl = await db.getSkillLevels(a.guid).then(unwrap);
 
-    const slm = asd.EnergySkill && asl[asd.EnergySkill] ? {
+    const slm = (asd.EnergySkill && asl[asd.EnergySkill]) ? {
         [asd.EnergySkill]: asl[asd.EnergySkill]
     } : {};
+
+    for (const s of asd.Skills) {
+        if (s != 0 && asl[s])
+            slm[s] = asl[s]
+    }
 
     const ap = await db.getAvatarProps(a.guid).then(unwrap);
     const afp = await db.getAvatarFightProps(a.guid).then(unwrap);

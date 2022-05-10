@@ -9,7 +9,6 @@
         "dispatch-query": "packages/dispatch-query",
         "dispatch-server": "packages/dispatch-server",
         "game-db": "packages/game-db",
-        "kcp": "packages/kcp",
         "kcp-client-conn": "packages/kcp-client-conn",
         "mt64": "packages/mt64",
         "network-server": "packages/network-server",
@@ -18,6 +17,7 @@
         "subsystems": "packages/subsystems",
         "ys-keys": "packages/ys-keys",
         "yscrypt": "packages/yscrypt",
+        "ysjson": "packages/ysjson",
         "ysproto": "packages/ysproto"
     }
 }

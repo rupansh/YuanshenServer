@@ -36,14 +36,14 @@ export function dispatchQueryHandlers(keys: DispatchKeys, config = defaultDispat
       return Buffer.from(QueryRegionListHttpRsp.toBinary(regionList)).toString("base64");
     },
     queryCurRegion() {
-      const regInf = regionInfo(keys.xorKey, config);
+      const regInf = regionInfo(keys.ec2b, config);
 
       const regionCustomConfigEnc = regionCustomConfig(config);
-      ysXor(keys.ec2b, regionCustomConfigEnc);
+      ysXor(keys.xorKey, regionCustomConfigEnc);
 
       const regionConfig = QueryCurrRegionHttpRsp.create({
         regionInfo: regInf,
-        clientSecretKey: keys.xorKey,
+        clientSecretKey: keys.ec2b,
         regionCustomConfigEncrypted: regionCustomConfigEnc
       });
 

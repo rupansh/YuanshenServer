@@ -1,4 +1,4 @@
-import Long = require("long")
+import Long from "long"
 
 export type AvatarTeamInfo = {
     uid: number,

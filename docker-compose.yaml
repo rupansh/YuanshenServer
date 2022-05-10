@@ -33,3 +33,17 @@ services:
       - "traefik.http.routers.dispatch-server-secure.rule=PathPrefix(`/`)"
       - "traefik.http.routers.dispatch-server-secure.entrypoints=websecure"
       - "traefik.http.routers.dispatch-server-secure.tls=true"
+
+  # network-server:
+  #   environment:
+  #     - PORT=4231
+  #   expose:
+  #     - "4231"
+  #   build:
+  #     dockerfile: ./packages/network-server/Dockerfile
+  #   restart: always
+  #   volumes:
+  #     - ./assets:/app/assets:ro
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.udp.routers.network-server.entrypoints=game"

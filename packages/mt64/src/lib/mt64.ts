@@ -3,7 +3,7 @@
   Based on C implementation by akuji Nishimura and Makoto Matsumoto
 */
 
-import Long = require("long");
+import Long from "long";
 
 const NN = 312;
 const MM = 156;

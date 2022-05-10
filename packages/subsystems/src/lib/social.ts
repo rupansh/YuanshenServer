@@ -3,6 +3,7 @@ import { PacketHandlerRegistry } from "@ysparadox/packet-handler";
 import { unwrap } from "@ysparadox/proto-utils";
 import { FriendOnlineState, GetPlayerBlacklistRsp, GetPlayerFriendListRsp, GetPlayerSocialDetailRsp, PropType, SocialDetail } from "@ysparadox/ysproto";
 import { SocialShowAvatarInfo } from "@ysparadox/ysproto";
+import util from "util";
 
 export function registerSocialSubsys(reg: PacketHandlerRegistry, db: GameDb) {
     // TODO
@@ -25,7 +26,7 @@ export function registerSocialSubsys(reg: PacketHandlerRegistry, db: GameDb) {
             nickname: user.nickName,
             level: userLevel,
             signature: user.signature,
-            birthday: { month: user.birthday.getMonth(), day: user.birthday.getDay() },
+            birthday: { month: user.birthday.getMonth()+1, day: user.birthday.getDate() },
             worldLevel,
             onlineState: FriendOnlineState.FRIEND_ONLINE,
             isFriend: true, // lie
@@ -36,8 +37,11 @@ export function registerSocialSubsys(reg: PacketHandlerRegistry, db: GameDb) {
             towerLevelIndex: user.towerLevelIndex,
             showAvatarInfoList: [avatarInfo],
             showNameCardIdList: [user.namecardId],
-            profilePicture: { avatarId: FAKE_AVATAR_ID }
+            profilePicture: { avatarId: 10000007 }
         });
+
+
+        console.log(util.inspect(GetPlayerSocialDetailRsp.create({ detailData: details }), false, 6))
 
         return GetPlayerSocialDetailRsp.create({ detailData: details });
     })

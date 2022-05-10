@@ -1,5 +1,5 @@
 import { mt64Rand } from "@ysparadox/mt64";
-import Long = require("long");
+import Long from "long";
 
 export function ysXor(key: Buffer, data: Buffer) {
   for (let i = 0; i < data.length; i += 1) {

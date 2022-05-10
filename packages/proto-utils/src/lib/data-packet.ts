@@ -31,6 +31,9 @@ export const data = (p: Packet) => {
 
     return u(p).slice(10+msz, 10+msz+dsz);
 }
+export const packetId = (p: Packet) => {
+    return u(p).readUInt16BE(2);
+}
 const metadataSize = (p: Packet) => u(p).readUInt16BE(4);
 const dataSize = (p: Packet) => u(p).readUInt32BE(6);
 const endMagic = (p: Packet) => {

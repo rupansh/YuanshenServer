@@ -1,0 +1,26 @@
+{
+    "root": "packages/ysjson",
+    "sourceRoot": "packages/ysjson/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/ysjson",
+                "main": "packages/ysjson/src/index.ts",
+                "tsConfig": "packages/ysjson/tsconfig.lib.json",
+                "assets": ["packages/ysjson/*.md"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/packages/ysjson"],
+            "options": {
+                "jestConfig": "packages/ysjson/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

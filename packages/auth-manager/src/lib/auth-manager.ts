@@ -13,6 +13,7 @@ export function authManager(registry: PacketHandlerRegistry) {
 
     registry.register("GetPlayerTokenReq", "GetPlayerTokenRsp", (conv, _, req) => {
         const uid = SPOOF_UID;
+        console.log("get conv", conv);
 
         const rsp = GetPlayerTokenRsp.create({
             accountType: req.accountType,
@@ -21,7 +22,7 @@ export function authManager(registry: PacketHandlerRegistry) {
             secretKeySeed: PLAYER_TOKEN_SEED,
             uid
         });
-
+    
         convToUser[conv] = uid;
         userToConv[uid] = conv;
 

@@ -5,6 +5,6 @@
         "module": "commonjs",
         "types": ["node"]
     },
-    "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-    "include": ["**/*.ts"]
+    "exclude": ["**/*.spec.ts", "**/*.test.ts", "../kcp/rel/index.d.ts"],
+    "include": ["**/*.ts", "src/app/game-server.worker.ts"]
 }

@@ -1,6 +1,6 @@
 import { PacketHandlerRegistry } from "@ysparadox/packet-handler";
 import { GameDb } from "@ysparadox/game-db";
-import { AvatarTeam, PlayerLoginRsp, PropType, StoreType } from "@ysparadox/ysproto";
+import { AvatarTeam, EnterType, PlayerLoginRsp, PropType, StoreType } from "@ysparadox/ysproto";
 import { buildAvatarInfo, propTypeRemap, unwrap } from "@ysparadox/proto-utils";
 
 export function registerLoginManager(reg: PacketHandlerRegistry, db: GameDb){
@@ -76,7 +76,7 @@ export function registerLoginManager(reg: PacketHandlerRegistry, db: GameDb){
 
         reg.notifyPacket("PlayerEnterSceneNotify", userId, metadata, {
             sceneId: sceneInfo.sceneId,
-            type: 4,
+            type: EnterType.ENTER_SELF,
             sceneBeginTime: BigInt(Date.now()),
             pos: { x: sceneInfo.pos[0], y: sceneInfo.pos[1], z: sceneInfo.pos[2] },
             targetUid: userId,

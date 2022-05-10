@@ -16,7 +16,7 @@ export function dispatchShieldHandlers(): DispatchShieldSvc {
     verify: dispatchHandler((data) => {
       const payload = buildAccountData({
         ...DEFAULT_ACCOUNT_DATA,
-        ...data
+        ...{ uid: data.uid, token: data.token }
       });
       
       return [0, payload];
